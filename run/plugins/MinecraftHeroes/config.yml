@@ -7,4 +7,3 @@ keepInventoryPercentageNatural: 0.0 #00%
 dummy:
   enabled: true
   despawn-time: 30 #Sekunden
-mendingUsage: nothing  # Optionen: everything, noArmor, nothing
