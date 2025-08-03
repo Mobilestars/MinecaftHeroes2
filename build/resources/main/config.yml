@@ -1,5 +1,4 @@
-message-prefix: "[Helden]"
-message-prefix-color: "§b"
+message-prefix: "§6[Helden]"
 fireworkCrossbowEnabled: false
 allow-punch: false
 villagerTradingEnabled: false

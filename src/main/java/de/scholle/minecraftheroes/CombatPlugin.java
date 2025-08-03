@@ -112,14 +112,13 @@ public class CombatPlugin extends JavaPlugin {
 
     public void loadPrefix() {
         FileConfiguration config = getConfig();
-        String rawPrefix = config.getString("message-prefix", "[Helden]");
-        String colorCode = config.getString("message-prefix-color", "§f");
+        String rawPrefix = config.getString("message-prefix", "§6[Helden]");
 
         if (!rawPrefix.endsWith(" ")) {
             rawPrefix += " ";
         }
 
-        this.messagePrefix = colorCode + rawPrefix;
+        this.messagePrefix = rawPrefix;
     }
 
     public void sendMessage(Player player, String message) {
