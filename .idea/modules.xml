@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/combatplugin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/combatplugin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MinecraftHeroes.main.iml" filepath="$PROJECT_DIR$/.idea/modules/MinecraftHeroes.main.iml" />
     </modules>
   </component>
 </project>

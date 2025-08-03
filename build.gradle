@@ -3,7 +3,7 @@ plugins {
     id "xyz.jpenilla.run-paper" version "2.3.1"
 }
 
-group = 'net.scholle'
+group = 'de.scholle'
 version = '1.21.8-2.6.0'
 
 repositories {
