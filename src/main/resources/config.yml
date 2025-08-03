@@ -1,4 +1,4 @@
-message-prefix: "§6[Helden]"
+message-prefix: "§6[Helden]" #§<Minecraft Farbcode> 6≙gold
 fireworkCrossbowEnabled: false
 allow-punch: false
 villagerTradingEnabled: false
@@ -9,4 +9,3 @@ dummy:
   enabled: true
   despawn-time: 30 #Sekunden
 mendingUsage: no_armor  # Optionen: everything, no_armor, nothing
-
