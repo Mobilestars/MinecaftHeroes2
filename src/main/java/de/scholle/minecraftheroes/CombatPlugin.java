@@ -47,7 +47,7 @@ public class CombatPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(this.combatManager, this);
         Bukkit.getPluginManager().registerEvents(new FireworkCrossbowBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new PunchEnchantBlocker(this), this);
-        Bukkit.getPluginManager().registerEvents(new VillagerTradeBlocker(villagerTradingEnabled), this);
+        Bukkit.getPluginManager().registerEvents(new VillagerTradeBlocker(this, villagerTradingEnabled), this);
         Bukkit.getPluginManager().registerEvents(new CombatLogoutListener(this), this);
         Bukkit.getPluginManager().registerEvents(new DummyListener(this), this);
 

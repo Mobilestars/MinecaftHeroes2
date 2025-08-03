@@ -45,7 +45,6 @@ public class CombatTabCompleter implements TabCompleter {
                     break;
 
                 case "nextglowing":
-                    // Kein Argument – keine Completion nötig
                     break;
             }
         } else if (args.length == 2) {

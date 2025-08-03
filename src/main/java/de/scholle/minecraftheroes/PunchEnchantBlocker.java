@@ -46,8 +46,8 @@ public class PunchEnchantBlocker implements Listener {
         if (allowPunch) return;
 
         AnvilInventory inventory = event.getInventory();
-        ItemStack first = inventory.getItem(0); // Bogen
-        ItemStack second = inventory.getItem(1); // Buch
+        ItemStack first = inventory.getItem(0);
+        ItemStack second = inventory.getItem(1);
 
         if (first == null || second == null) return;
         if (!first.getType().toString().contains("BOW")) return;
@@ -64,7 +64,7 @@ public class PunchEnchantBlocker implements Listener {
         if (allowPunch) return;
 
         if (event.getInventory().getType() != InventoryType.ANVIL) return;
-        if (event.getRawSlot() != 2) return; // Ergebnis-Slot im Amboss
+        if (event.getRawSlot() != 2) return;
 
         ItemStack result = event.getCurrentItem();
         if (result == null) return;

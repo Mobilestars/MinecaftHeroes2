@@ -75,7 +75,6 @@ public class CombatManager implements Listener {
         Collections.shuffle(occupied);
         List<Integer> keepSlots = occupied.subList(0, Math.min(keepCount, occupied.size()));
 
-        // Items, die behalten werden
         ItemStack[] kept = new ItemStack[inventory.length];
         for (int i = 0; i < inventory.length; i++) {
             if (keepSlots.contains(i)) {
@@ -83,15 +82,10 @@ public class CombatManager implements Listener {
             }
         }
 
-        // Temporär entfernen der behaltenen Items aus Inventar, damit GravesX sie nicht als Drop erkennt
         for (Integer slot : keepSlots) {
             player.getInventory().setItem(slot, null);
         }
 
-        // Drops bleiben unverändert, GravesX sieht nur noch die nicht-behaltenen Items
-        // Keine Änderung an event.getDrops()!
-
-        // Inventar nach kurzem Tick wiederherstellen
         Bukkit.getScheduler().runTask(plugin, () -> {
             player.getInventory().setContents(kept);
             plugin.sendMessage(player,"§6Ein Teil deines Inventars wurde behalten.");
@@ -120,12 +114,11 @@ public class CombatManager implements Listener {
         return combatTimestamps;
     }
 
-    // Gibt verbleibende Kampfzeit in Sekunden zurück
     public int getCombatTimeLeft(UUID uuid) {
         long now = System.currentTimeMillis();
         long combatTimestamp = combatTimestamps.getOrDefault(uuid, 0L);
         long elapsed = now - combatTimestamp;
-        int totalCombatDuration = 30000; // 30 Sekunden Kampfzeit
+        int totalCombatDuration = 30000;
 
         int timeLeft = (int) ((totalCombatDuration - elapsed) / 1000);
         return Math.max(timeLeft, 0);
