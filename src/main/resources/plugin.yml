@@ -1,0 +1,19 @@
+name: MinecraftHeroes
+main: de.scholle.minecraftheroes.CombatPlugin
+version: 2.6
+api-version: "1.21"
+author: Scholle
+description: 3-life combat system
+
+commands:
+  lives:
+    description: Check or modify player lives
+    usage: /lives <check|add|set> <player> [amount]
+  linkheart:
+    description: Generiert zufällige Linked-Partner
+    usage: /linkheart generate
+  heart:
+    description: Gib ein Herz, um deinen Partner zu retten
+    usage: /heart <player>
+  listdummys:
+      description: Listet alle aktiven Dummys mit Positionen
