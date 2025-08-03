@@ -2,20 +2,18 @@
 
 - [ ]  Glowing
 - [x]  Punch
-- [ ]  Graves(beta)
+- [x]  Graves(beta)
 - [ ]  Mending
 - [ ]  Duel
 - [ ]  DeathScreen
 - [ ]  TexturePack
-- [ ]  TexturePack-Real
-- [ ]  LinkedHeart(alpha)
-- [ ]  Dummy(beta)
+- [ ]  LinkedHeart
+- [x]  Dummy(beta)
 - [x]  Combat
 - [x]  Herzen
 - [x]  Trading
-- [ ]  Config Beschreibung
 - [ ]  Website
-- [ ]  GitHub
+- [x]  GitHub
 - [x]  RocketLauncher
 - [ ]  Rockets
 - [ ]  Config
@@ -30,7 +28,7 @@
 - [ ]  Cobwebs
 - [ ]  Armorlock
 - [ ]  Enderpearls
-- [ ]  Prefix
+- [x]  Prefix
 - [ ]  Chat
 - [ ]  Weathercontrol
 - [ ]  Timecontrol
@@ -43,7 +41,7 @@
 - [ ]  No Enchanted Golden Apple
 - [ ]  Krone
 - [ ]  Trident
-- [ ]  Zone
+- [ ]  Border
 - [ ]  Language
 - [ ]  LuckPerms
 - [ ]  ClearDummys bei Serverclose
