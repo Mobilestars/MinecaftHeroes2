@@ -32,7 +32,7 @@
 - [ ]  Chat
 - [ ]  Weathercontrol
 - [ ]  Timecontrol
-- [ ]  LeafDecay
+- [x]  LeafDecay
 - [ ]  NoNether
 - [ ]  NoNetherite
 - [ ]  EndChunks
