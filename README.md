@@ -143,7 +143,7 @@ Alle Rechte am Originalkonzept und -material liegen bei den jeweiligen Rechteinh
 
 Für Anfragen zur öffentlichen Nutzung:  
 Discord: **scholle109**(schnellste Antwort)
-E-Mail: **jannik.scholl.mc@gmail.com
+E-Mail: **jannik.scholl.mc@gmail.com**
 
 ---
 
