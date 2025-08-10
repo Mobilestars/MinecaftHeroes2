@@ -46,7 +46,6 @@ public class NoNetheriteListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         int rawSlot = event.getRawSlot();
 
-        // Armor-Slot Blockade
         if (rawSlot >= 5 && rawSlot <= 8) {
             ItemStack currentItem = event.getCurrentItem();
             ItemStack cursorItem = event.getCursor();
