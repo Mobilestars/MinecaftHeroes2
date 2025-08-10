@@ -64,7 +64,7 @@ noopgap: true
 | Config              | ✅ Fertig          |
 | Dummy               | ✅ Beta            |
 | GitHub              | ✅ Fertig          |
-| Graves              | ✅ GraveStonesPlus |
+| Graves              | ✅ [GraveStonesPlus](https://www.spigotmc.org/resources/gravestonesplus.95132) |
 | Herzen (no Texture) | ✅ Fertig          |
 | InstaLeafDecay      | ✅ Fertig          |
 | License             | ✅ Fertig          |
