@@ -9,16 +9,12 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BlockBreakEventListener implements Listener {
 
-    private final ArrayList<BlockFace> neighbours = new ArrayList<>(List.of(BlockFace.values()));
+    private final List<BlockFace> neighbours = new ArrayList<>(List.of(BlockFace.values()));
     private final Set<Block> visited = new HashSet<>();
 
     public BlockBreakEventListener() {
@@ -26,52 +22,72 @@ public class BlockBreakEventListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onBlockBreak(@NotNull BlockBreakEvent event) {
+    public void onBlockBreak(BlockBreakEvent event) {
         Block block = event.getBlock();
+        visited.clear();
 
-        visited.clear(); // Neues Event, also Reset
-
-        if (Tag.LEAVES.isTagged(block.getType())) {
-            breakLeaf(block, isValidLeaf(block), block);
-        }
-
+        // Wenn ein Log zerstört wird → Prüfen, ob es das letzte in der Nähe war
         if (Tag.LOGS.isTagged(block.getType())) {
-            breakLeaf(block, false, block);
+            for (BlockFace face : neighbours) {
+                Block neighbour = block.getRelative(face);
+                if (Tag.LEAVES.isTagged(neighbour.getType()) && !isLeafConnectedToLog(neighbour)) {
+                    breakLeaf(neighbour, true);
+                }
+            }
         }
     }
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onLeavesDecay(LeavesDecayEvent event) {
-        visited.clear(); // Neues Event, also Reset
-        Block block = event.getBlock();
+        visited.clear();
+        Block leaf = event.getBlock();
 
-        if (isValidLeaf(block, block)) {
+        if (!isLeafConnectedToLog(leaf)) {
             event.setCancelled(true); // Normales Verrotten verhindern
-            breakLeaf(block, true, block);
+            breakLeaf(leaf, true);
         }
     }
 
-    private void breakLeaf(Block block, boolean breakFirstBlock, Block originalBlock) {
-        if (!visited.add(block)) return; // Schon verarbeitet → Schleifen verhindern
+    private void breakLeaf(Block block, boolean breakFirstBlock) {
+        if (!visited.add(block)) return;
 
-        if (breakFirstBlock) {
-            block.breakNaturally();
+        if (breakFirstBlock) block.breakNaturally();
+
+        for (BlockFace face : neighbours) {
+            Block neighbour = block.getRelative(face);
+            if (isValidLeaf(neighbour) && !isLeafConnectedToLog(neighbour)) {
+                breakLeaf(neighbour, true);
+            }
         }
-
-        for (BlockFace neighbour : neighbours) {
-            Block neighbourBlock = block.getRelative(neighbour);
-            if (!isValidLeaf(neighbourBlock, originalBlock)) continue;
-            breakLeaf(neighbourBlock, true, originalBlock);
-        }
-    }
-
-    private boolean isValidLeaf(Block block, Block originalBlock) {
-        if (!(block.getBlockData() instanceof Leaves leafBlock)) return false;
-        if (leafBlock.isPersistent()) return false; // Spielerplatzierte Blätter ignorieren
-        return TaxicabDistanceService.distance(block, originalBlock) <= 35;
     }
 
     private boolean isValidLeaf(Block block) {
-        return isValidLeaf(block, block);
+        if (!(block.getBlockData() instanceof Leaves leafBlock)) return false;
+        return !leafBlock.isPersistent(); // Nur natürliche Blätter
+    }
+
+    /**
+     * Prüft, ob ein Blatt noch in Reichweite eines Logs ist
+     */
+    private boolean isLeafConnectedToLog(Block leaf) {
+        Set<Block> checked = new HashSet<>();
+        Queue<Block> toCheck = new LinkedList<>();
+        toCheck.add(leaf);
+
+        while (!toCheck.isEmpty()) {
+            Block current = toCheck.poll();
+            if (!checked.add(current)) continue;
+
+            if (Tag.LOGS.isTagged(current.getType())) {
+                return true; // Log gefunden → noch verbunden
+            }
+
+            if (current.getBlockData() instanceof Leaves) {
+                for (BlockFace face : neighbours) {
+                    toCheck.add(current.getRelative(face));
+                }
+            }
+        }
+        return false; // Kein Log mehr in Reichweite
     }
 }
