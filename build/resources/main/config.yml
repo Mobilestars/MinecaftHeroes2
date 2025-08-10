@@ -10,3 +10,5 @@ dummy:
   despawn-time: 30 #Sekunden
 noopgap: true
 noNether: true
+NoTotems: true
+

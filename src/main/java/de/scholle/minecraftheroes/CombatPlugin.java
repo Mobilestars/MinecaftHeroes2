@@ -27,6 +27,7 @@ public class CombatPlugin extends JavaPlugin {
     private boolean villagerTradingEnabled;
     private boolean loseLifeOnLogoutDuringCombat;
     private boolean noNether;
+    private boolean noTotems; // neu
 
     private String messagePrefix;
 
@@ -42,10 +43,12 @@ public class CombatPlugin extends JavaPlugin {
         villagerTradingEnabled = config.getBoolean("villagerTradingEnabled", true);
         loseLifeOnLogoutDuringCombat = config.getBoolean("loseLifeOnLogoutDuringCombat", true);
         noNether = config.getBoolean("nonether", true);
+        noTotems = config.getBoolean("NoTotems", true); // neu
 
         getLogger().info("[DEBUG] Villager Trading Enabled: " + villagerTradingEnabled);
         getLogger().info("[DEBUG] Lose life on logout during combat: " + loseLifeOnLogoutDuringCombat);
         getLogger().info("[DEBUG] Nether disabled: " + noNether);
+        getLogger().info("[DEBUG] NoTotems enabled: " + noTotems);
 
         this.livesStorage = new LivesStorage(this);
         this.combatManager = new CombatManager(this);
@@ -59,8 +62,10 @@ public class CombatPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new DummyListener(this), this);
         Bukkit.getPluginManager().registerEvents(new NoOpgapEatListener(this), this);
         Bukkit.getPluginManager().registerEvents(new NetherEnterBlocker(this), this);
+        Bukkit.getPluginManager().registerEvents(new BlockBreakEventListener(), this);
 
-        getServer().getPluginManager().registerEvents(new BlockBreakEventListener(), this);
+        // Neu: NoTotemListener registrieren
+        Bukkit.getPluginManager().registerEvents(new NoTotemListener(this), this);
 
         getCommand("lives").setExecutor(new LivesCommand(this));
         getCommand("lives").setTabCompleter(new CombatTabCompleter());
@@ -138,5 +143,10 @@ public class CombatPlugin extends JavaPlugin {
 
     public boolean isNoNether() {
         return noNether;
+    }
+
+    // Neu
+    public boolean isNoTotems() {
+        return noTotems;
     }
 }
