@@ -1,3 +1,5 @@
+# MinecaftHeroes
+
 Copyright (c) 2025 Jannik Scholl
 
 Dieses Plugin basiert auf dem YouTube-PvP-Projekt "Minecraft Helden 2".  
