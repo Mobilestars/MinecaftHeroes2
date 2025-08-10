@@ -1,0 +1,47 @@
+# Minecraft Heroes Plugin
+
+- [ ]  Glowing
+- [x]  Punch
+- [x]  Graves(beta)
+- [ ]  Mending
+- [ ]  Duel
+- [ ]  DeathScreen
+- [ ]  TexturePack
+- [ ]  LinkedHeart
+- [x]  Dummy(beta)
+- [x]  Combat
+- [x]  Herzen
+- [x]  Trading
+- [ ]  Website
+- [x]  GitHub
+- [x]  RocketLauncher
+- [ ]  Rockets
+- [ ]  Config
+- [ ]  Regeln
+- [ ]  Trident-Combat
+- [ ]  Chat
+- [ ]  Playtime
+- [ ]  LiveStealer
+- [ ]  Seelen Armulett
+- [ ]  Zombie Event
+- [ ]  Hunting Event
+- [ ]  Cobwebs
+- [ ]  Armorlock
+- [ ]  Enderpearls
+- [x]  Prefix
+- [ ]  Chat
+- [ ]  Weathercontrol
+- [ ]  Timecontrol
+- [ ]  LeafDecay
+- [ ]  NoNether
+- [ ]  NoNetherite
+- [ ]  EndChunks
+- [ ]  NetherChunks
+- [ ]  No Totems
+- [ ]  No Enchanted Golden Apple
+- [ ]  Krone
+- [ ]  Trident
+- [ ]  Border
+- [ ]  Language
+- [ ]  LuckPerms
+- [ ]  ClearDummys bei Serverclose

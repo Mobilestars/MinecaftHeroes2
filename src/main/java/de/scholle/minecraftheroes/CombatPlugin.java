@@ -1,5 +1,6 @@
 package de.scholle.minecraftheroes;
 
+import de.scholle.minecraftheroes.leafdecay.BlockBreakEventListener;
 import de.scholle.minecraftheroes.dummy.DummyListener;
 import de.scholle.minecraftheroes.dummy.ListDummysCommand;
 import org.bukkit.Bukkit;
@@ -14,6 +15,7 @@ import java.util.UUID;
 public class CombatPlugin extends JavaPlugin {
 
     private static CombatPlugin instance;
+    public static CombatPlugin plugin; // Für FastLeafDecay-Teil
 
     private CombatManager combatManager;
     private CombatDisplayManager displayManager;
@@ -30,6 +32,7 @@ public class CombatPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        plugin = this;
 
         saveDefaultConfig();
         loadPrefix();
@@ -44,6 +47,7 @@ public class CombatPlugin extends JavaPlugin {
         this.combatManager = new CombatManager(this);
         this.displayManager = new CombatDisplayManager(this, this.combatManager);
 
+        // Combat-bezogene Listener
         Bukkit.getPluginManager().registerEvents(this.combatManager, this);
         Bukkit.getPluginManager().registerEvents(new FireworkCrossbowBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new PunchEnchantBlocker(this), this);
@@ -51,6 +55,10 @@ public class CombatPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new CombatLogoutListener(this), this);
         Bukkit.getPluginManager().registerEvents(new DummyListener(this), this);
 
+        // FastLeafDecay-Listener
+        getServer().getPluginManager().registerEvents(new BlockBreakEventListener(), this);
+
+        // Commands
         getCommand("lives").setExecutor(new LivesCommand(this));
         getCommand("lives").setTabCompleter(new CombatTabCompleter());
         getCommand("heart").setTabCompleter(new CombatTabCompleter());
