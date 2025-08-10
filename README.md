@@ -5,22 +5,51 @@ Dieses Plugin wurde aus Spaß und zu Unterhaltungszwecken entwickelt und erweite
 
 ---
 
+## Graves
+
+Download GraveStonePlus von: https://www.spigotmc.org/resources/gravestonesplus.95132
+
+### ⚙️ Essentielle GraveStonesPlus Config Einstellung
+
+Damit das Plugin korrekt funktioniert und keine Items verloren gehen, **muss** in der `config.yml` von GraveStonesPlus folgende Einstellung gesetzt sein:
+
+PercentageDrops: 100
+
+Dies ist in der Config.yml vom pinecraft Heroes configurierbar
+
+keepInventoryPercentageCombat: 0.5
+
+keepInventoryPercentageNatural: 0.0
+
+### ⚙️ Optimale GraveStonesPlus Config Einstellungen
+Damit das Plugin das beste „Heldenfeeling“ bietet, empfehlen wir folgende Einstellungen in der `config.yml` von GraveStonesPlus:
+
+GlowingEffectNearGrave: false
+
+GraveTimeLimit: -1
+
+DisableArmorStands: true
+
+GiveCompassOnRespawn: false
+
+KeepAllExp: true
+
 ## 🚀 Features (Fertig / Beta)
 
-| Feature            | Status    |
-|--------------------|-----------|
-| No Punch           | ✅ Fertig |
-| Graves             | ✅ Beta   |
-| Dummy              | ✅ Beta   |
-| Combat             | ✅ Fertig |
-| Herzen(no Texture) | ✅ Fertig |
-| Trading            | ✅ Fertig |
-| GitHub             | ✅ Fertig |
-| NoRocketLauncher   | ✅ Fertig |
-| Prefix             | ✅ Fertig |
-| InstaLeafDecay     | ✅ Fertig |
-| License            | ✅ Fertig |
-| Config             | ✅ Fertig |
+| Feature            | Status            |
+|--------------------|-------------------|
+| No Punch           | ✅ Fertig          |
+| Graves             | ✅ GraveStonesPlus |
+| Dummy              | ✅ Beta            |
+| Combat             | ✅ Fertig          |
+| Herzen(no Texture) | ✅ Fertig          |
+| Trading            | ✅ Fertig          |
+| GitHub             | ✅ Fertig          |
+| NoRocketLauncher   | ✅ Fertig          |
+| Prefix             | ✅ Fertig          |
+| InstaLeafDecay     | ✅ Fertig          |
+| License            | ✅ Fertig          |
+| Config             | ✅ Fertig          |
 
 ---
 
