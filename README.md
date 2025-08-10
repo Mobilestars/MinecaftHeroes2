@@ -73,6 +73,7 @@ noNetherite: true
 | InstaLeafDecay      | ✅ Fertig          |
 | License             | ✅ Fertig          |
 | No Nether           | ✅ Fertig          |
+| No Netherite        | ✅ Fertig          |
 | No OPGap            | ✅ Fertig          |
 | No Punch            | ✅ Fertig          |
 | No Rocket Launcher  | ✅ Fertig          |
@@ -104,7 +105,6 @@ noNetherite: true
 | LuckPerms                  | Offen    |
 | NetherChunks               | Offen    |
 | No Mending                 | Offen    |
-| No Netherite               | Offen    |
 | Playtime                   | Offen    |
 | Regeln                     | Offen    |
 | Seelen Armulett            | Offen    |

@@ -2,10 +2,12 @@ package de.scholle.minecraftheroes;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDispenseArmorEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -44,7 +46,7 @@ public class NoNetheriteListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         int rawSlot = event.getRawSlot();
 
-        // Blockiere Platzieren von Netherite-Rüstung in Armor-Slots
+        // Armor-Slot Blockade
         if (rawSlot >= 5 && rawSlot <= 8) {
             ItemStack currentItem = event.getCurrentItem();
             ItemStack cursorItem = event.getCursor();
@@ -53,7 +55,6 @@ public class NoNetheriteListener implements Listener {
                     (currentItem != null && isNetheriteArmor(currentItem.getType()))) {
                 event.setCancelled(true);
                 plugin.sendMessage(player, ChatColor.RED + "Netherite-Rüstung darf hier nicht abgelegt werden!");
-                return;
             }
         }
     }
@@ -65,7 +66,7 @@ public class NoNetheriteListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
-        // Rechtsklick-Anziehen von Netherite-Rüstung verhindern
+        // Rechtsklick-Anziehen blockieren
         if (item != null && isNetheriteArmor(item.getType()) && event.getHand() == EquipmentSlot.HAND) {
             event.setCancelled(true);
             plugin.sendMessage(player, ChatColor.RED + "Das Anlegen von Netherite-Rüstung ist deaktiviert!");
@@ -88,7 +89,6 @@ public class NoNetheriteListener implements Listener {
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (!plugin.isNoNetherite()) return;
-
         if (!(event.getDamager() instanceof Player)) return;
 
         Player player = (Player) event.getDamager();
@@ -97,6 +97,20 @@ public class NoNetheriteListener implements Listener {
         if (item != null && isNetheriteMaterial(item.getType())) {
             event.setCancelled(true);
             plugin.sendMessage(player, ChatColor.RED + "Das Benutzen von Netherite-Waffen ist deaktiviert!");
+        }
+    }
+
+    @EventHandler
+    public void onBlockDispenseArmor(BlockDispenseArmorEvent event) {
+        if (!plugin.isNoNetherite()) return;
+
+        Entity target = event.getTargetEntity();
+        if (target instanceof Player) {
+            ItemStack armor = event.getItem();
+            if (armor != null && isNetheriteArmor(armor.getType())) {
+                event.setCancelled(true);
+                plugin.sendMessage((Player) target, ChatColor.RED + "Dispenser können keine Netherite-Rüstung anlegen!");
+            }
         }
     }
 }
