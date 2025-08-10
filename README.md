@@ -71,7 +71,8 @@ noopgap: true
 | No Nether           | ✅ Fertig          |
 | No OPGap            | ✅ Fertig          |
 | No Punch            | ✅ Fertig          |
-| NoRocketLauncher    | ✅ Fertig          |
+| No RocketLauncher   | ✅ Fertig          |
+| No Totems           | ✅ Fertig          |
 | Prefix              | ✅ Fertig          |
 | Trading             | ✅ Fertig          |
 
@@ -99,7 +100,6 @@ noopgap: true
 | NetherChunks               | Offen    |
 | No Mending                 | Offen    |
 | No Netherite               | Offen    |
-| No Totems                  | Offen    |
 | Playtime                   | Offen    |
 | Regeln                     | Offen    |
 | Rockets                    | Offen    |
