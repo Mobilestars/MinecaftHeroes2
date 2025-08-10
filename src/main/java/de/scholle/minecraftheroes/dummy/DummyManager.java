@@ -122,13 +122,14 @@ public class DummyManager {
         double newHealth = Math.max(1, player.getAttribute(Attribute.MAX_HEALTH).getBaseValue() - lost);
         player.setHealth(newHealth);
 
-        despawnDummy(uuid); // Dummy verschwindet beim Join
+        despawnDummy(uuid);
     }
 
     public static UUID getOwner(Entity entity) {
         for (DummyData data : dummies.values()) {
             if (data.getDummy().getUniqueId().equals(entity.getUniqueId())) return data.getOwner();
         }
+
         return null;
     }
 
