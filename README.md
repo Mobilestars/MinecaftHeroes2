@@ -5,13 +5,13 @@ Dieses Plugin wurde aus Spaß und zu Unterhaltungszwecken entwickelt und erweite
 
 ---
 
-## Kompatibilität:  
+## Kompatibilität:
 Getestet mit Minecraft Version **1.21.X**  
 Sollte auch mit älteren Versionen kompatibel sein, ist aber nicht explizit getestet.
 
 ## Graves
 
-Download GraveStonePlus von: https://www.spigotmc.org/resources/gravestonesplus.95132
+Download GraveStonePlus von: [GraveStonesPlus](https://www.spigotmc.org/resources/gravestonesplus.95132)
 
 ### ⚙️ Essentielle GraveStonesPlus Config Einstellung
 
@@ -37,6 +37,24 @@ DisableArmorStands: true
 GiveCompassOnRespawn: false
 
 KeepAllExp: true
+
+<details>
+<summary>Config.yml</summary>
+
+message-prefix: "§6[Helden]" #§<Minecraft Farbcode> 6≙gold  
+fireworkCrossbowEnabled: false  
+allow-punch: false  
+villagerTradingEnabled: false  
+loseLifeOnLogoutDuringCombat: false  
+keepInventoryPercentageCombat: 0.5 #50%  
+keepInventoryPercentageNatural: 0.0 #00%  
+dummy:  
+enabled: true  
+despawn-time: 30 #Sekunden  
+noopgap: true
+
+</details>
+
 
 ## 🚀 Features (Fertig / Beta)
 
@@ -88,7 +106,7 @@ KeepAllExp: true
 | Seelen Armulett            | Offen    |
 | Trident                    | Offen    |
 | Trident-Combat             | Offen    |
-| Website                    | Offen    |
+| Wiki                       | Offen    |
 | Zombie Event               | Offen    |
 
 ---
