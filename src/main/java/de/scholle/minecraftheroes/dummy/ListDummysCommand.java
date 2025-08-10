@@ -14,7 +14,6 @@ public class ListDummysCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        // Hardcoded Berechtigung: Nur OP oder "heroes.admin"
         if (!sender.isOp() && !sender.hasPermission("heroes.admin")) {
             sender.sendMessage("§cDu hast keine Berechtigung, diesen Befehl auszuführen.");
             return true;
@@ -40,7 +39,8 @@ public class ListDummysCommand implements CommandExecutor {
                     "§f" + loc.getWorld().getName() +
                     " §8x:" + loc.getBlockX() +
                     " y:" + loc.getBlockY() +
-                    " z:" + loc.getBlockZ());
+                    " z:" + loc.getBlockZ()
+            );
         }
 
         return true;
