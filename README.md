@@ -40,21 +40,21 @@ KeepAllExp: true
 
 ## 🚀 Features (Fertig / Beta)
 
-| Feature            | Status            |
-|--------------------|-------------------|
-| No Punch           | ✅ Fertig          |
-| Graves             | ✅ GraveStonesPlus |
-| Dummy              | ✅ Beta            |
-| Combat             | ✅ Fertig          |
-| Herzen(no Texture) | ✅ Fertig          |
-| Trading            | ✅ Fertig          |
-| GitHub             | ✅ Fertig          |
-| NoRocketLauncher   | ✅ Fertig          |
-| Prefix             | ✅ Fertig          |
-| InstaLeafDecay     | ✅ Fertig          |
-| License            | ✅ Fertig          |
-| Config             | ✅ Fertig          |
-| No OPGap           | ✅ Fertig          |
+| Feature             | Status            |
+|---------------------|-------------------|
+| Combat              | ✅ Fertig          |
+| Config              | ✅ Fertig          |
+| Dummy               | ✅ Beta            |
+| GitHub              | ✅ Fertig          |
+| Graves              | ✅ GraveStonesPlus |
+| Herzen (no Texture) | ✅ Fertig          |
+| InstaLeafDecay      | ✅ Fertig          |
+| License             | ✅ Fertig          |
+| No OPGap            | ✅ Fertig          |
+| No Punch            | ✅ Fertig          |
+| NoRocketLauncher    | ✅ Fertig          |
+| Prefix              | ✅ Fertig          |
+| Trading             | ✅ Fertig          |
 
 ---
 
@@ -62,36 +62,34 @@ KeepAllExp: true
 
 | Feature                    | Status   |
 |----------------------------|----------|
-| Glowing                    | Offen    |
-| No Mending                 | Offen    |
-| Duel                       | Offen    |
-| DeathScreen                | Offen    |
-| TexturePack                | Offen    |
-| LinkedHeart                | Offen    |
-| Website                    | Offen    |
-| Rockets                    | Offen    |
-| Regeln                     | Offen    |
-| Trident-Combat             | Offen    |
-| Chat                       | Offen    |
-| Playtime                   | Offen    |
-| LiveStealer                | Offen    |
-| Seelen Armulett            | Offen    |
-| Zombie Event               | Offen    |
-| Hunting Event              | Offen    |
-| Cobwebs                    | Offen    |
 | Armorlock                  | Offen    |
-| Enderpearls                | Offen    |
-| NoNether                   | Offen    |
-| No Netherite               | Offen    |
-| EndChunks                  | Offen    |
-| NetherChunks               | Offen    |
-| No Totems                  | Offen    |
-| Krone                      | Offen    |
-| Trident                    | Offen    |
 | Border                     | Offen    |
-| Language                   | Offen    |
-| LuckPerms                  | Offen    |
+| Chat                       | Offen    |
 | ClearDummys on Serverclose | Offen    |
+| Cobwebs                    | Offen    |
+| DeathScreen                | Offen    |
+| Duel                       | Offen    |
+| EndChunks                  | Offen    |
+| Enderpearls                | Offen    |
+| Glowing                    | Offen    |
+| Hunting Event              | Offen    |
+| Language                   | Offen    |
+| LinkedHeart                | Offen    |
+| LiveStealer                | Offen    |
+| LuckPerms                  | Offen    |
+| NetherChunks               | Offen    |
+| No Mending                 | Offen    |
+| No Nether                  | Offen    |
+| No Netherite               | Offen    |
+| No Totems                  | Offen    |
+| Playtime                   | Offen    |
+| Regeln                     | Offen    |
+| Rockets                    | Offen    |
+| Seelen Armulett            | Offen    |
+| Trident                    | Offen    |
+| Trident-Combat             | Offen    |
+| Website                    | Offen    |
+| Zombie Event               | Offen    |
 
 ---
 
