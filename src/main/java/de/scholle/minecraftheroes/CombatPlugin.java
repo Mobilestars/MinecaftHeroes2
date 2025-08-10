@@ -15,7 +15,7 @@ import java.util.UUID;
 public class CombatPlugin extends JavaPlugin {
 
     private static CombatPlugin instance;
-    public static CombatPlugin plugin; // Für FastLeafDecay-Teil
+    public static CombatPlugin plugin;
 
     private CombatManager combatManager;
     private CombatDisplayManager displayManager;
@@ -26,6 +26,7 @@ public class CombatPlugin extends JavaPlugin {
 
     private boolean villagerTradingEnabled;
     private boolean loseLifeOnLogoutDuringCombat;
+    private boolean noNether;
 
     private String messagePrefix;
 
@@ -40,14 +41,16 @@ public class CombatPlugin extends JavaPlugin {
         FileConfiguration config = getConfig();
         villagerTradingEnabled = config.getBoolean("villagerTradingEnabled", true);
         loseLifeOnLogoutDuringCombat = config.getBoolean("loseLifeOnLogoutDuringCombat", true);
+        noNether = config.getBoolean("nonether", true);
+
         getLogger().info("[DEBUG] Villager Trading Enabled: " + villagerTradingEnabled);
         getLogger().info("[DEBUG] Lose life on logout during combat: " + loseLifeOnLogoutDuringCombat);
+        getLogger().info("[DEBUG] Nether disabled: " + noNether);
 
         this.livesStorage = new LivesStorage(this);
         this.combatManager = new CombatManager(this);
         this.displayManager = new CombatDisplayManager(this, this.combatManager);
 
-        // Combat-bezogene Listener
         Bukkit.getPluginManager().registerEvents(this.combatManager, this);
         Bukkit.getPluginManager().registerEvents(new FireworkCrossbowBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new PunchEnchantBlocker(this), this);
@@ -55,11 +58,10 @@ public class CombatPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new CombatLogoutListener(this), this);
         Bukkit.getPluginManager().registerEvents(new DummyListener(this), this);
         Bukkit.getPluginManager().registerEvents(new NoOpgapEatListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new NetherEnterBlocker(this), this);
 
-        // FastLeafDecay-Listener
         getServer().getPluginManager().registerEvents(new BlockBreakEventListener(), this);
 
-        // Commands
         getCommand("lives").setExecutor(new LivesCommand(this));
         getCommand("lives").setTabCompleter(new CombatTabCompleter());
         getCommand("heart").setTabCompleter(new CombatTabCompleter());
@@ -122,11 +124,9 @@ public class CombatPlugin extends JavaPlugin {
     public void loadPrefix() {
         FileConfiguration config = getConfig();
         String rawPrefix = config.getString("message-prefix", "§6[Helden]");
-
         if (!rawPrefix.endsWith(" ")) {
             rawPrefix += " ";
         }
-
         this.messagePrefix = rawPrefix;
     }
 
@@ -134,5 +134,9 @@ public class CombatPlugin extends JavaPlugin {
         if (player != null) {
             player.sendMessage(messagePrefix + message);
         }
+    }
+
+    public boolean isNoNether() {
+        return noNether;
     }
 }

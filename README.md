@@ -68,6 +68,7 @@ noopgap: true
 | Herzen (no Texture) | ✅ Fertig          |
 | InstaLeafDecay      | ✅ Fertig          |
 | License             | ✅ Fertig          |
+| No Nether           | ✅ Fertig          |
 | No OPGap            | ✅ Fertig          |
 | No Punch            | ✅ Fertig          |
 | NoRocketLauncher    | ✅ Fertig          |
@@ -97,14 +98,12 @@ noopgap: true
 | LuckPerms                  | Offen    |
 | NetherChunks               | Offen    |
 | No Mending                 | Offen    |
-| No Nether                  | Offen    |
 | No Netherite               | Offen    |
 | No Totems                  | Offen    |
 | Playtime                   | Offen    |
 | Regeln                     | Offen    |
 | Rockets                    | Offen    |
 | Seelen Armulett            | Offen    |
-| Trident                    | Offen    |
 | Trident-Combat             | Offen    |
 | Wiki                       | Offen    |
 | Zombie Event               | Offen    |

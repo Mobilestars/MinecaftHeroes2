@@ -9,3 +9,4 @@ dummy:
   enabled: true
   despawn-time: 30 #Sekunden
 noopgap: true
+noNether: true
