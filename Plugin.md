@@ -45,3 +45,5 @@
 - [ ]  Language
 - [ ]  LuckPerms
 - [ ]  ClearDummys bei Serverclose
+- [x]  License
+- [ ]  Readme
