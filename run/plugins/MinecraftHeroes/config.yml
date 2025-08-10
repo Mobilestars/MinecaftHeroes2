@@ -1,3 +1,4 @@
+message-prefix: "§6[Helden]" #§<Minecraft Farbcode> 6≙gold
 fireworkCrossbowEnabled: false
 allow-punch: false
 villagerTradingEnabled: false
@@ -7,3 +8,4 @@ keepInventoryPercentageNatural: 0.0 #00%
 dummy:
   enabled: true
   despawn-time: 30 #Sekunden
+noopgap: true

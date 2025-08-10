@@ -38,7 +38,7 @@
 - [ ]  EndChunks
 - [ ]  NetherChunks
 - [ ]  No Totems
-- [ ]  No Enchanted Golden Apple
+- [x]  No Enchanted Golden Apple
 - [ ]  Krone
 - [ ]  Trident
 - [ ]  Border

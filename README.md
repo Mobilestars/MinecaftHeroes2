@@ -5,6 +5,10 @@ Dieses Plugin wurde aus Spaß und zu Unterhaltungszwecken entwickelt und erweite
 
 ---
 
+## Kompatibilität:  
+Getestet mit Minecraft Version **1.21.X**  
+Sollte auch mit älteren Versionen kompatibel sein, ist aber nicht explizit getestet.
+
 ## Graves
 
 Download GraveStonePlus von: https://www.spigotmc.org/resources/gravestonesplus.95132
@@ -50,6 +54,7 @@ KeepAllExp: true
 | InstaLeafDecay     | ✅ Fertig          |
 | License            | ✅ Fertig          |
 | Config             | ✅ Fertig          |
+| No OPGap           | ✅ Fertig          |
 
 ---
 
@@ -81,7 +86,6 @@ KeepAllExp: true
 | EndChunks                  | Offen    |
 | NetherChunks               | Offen    |
 | No Totems                  | Offen    |
-| No OP Gaps                 | Offen    |
 | Krone                      | Offen    |
 | Trident                    | Offen    |
 | Border                     | Offen    |

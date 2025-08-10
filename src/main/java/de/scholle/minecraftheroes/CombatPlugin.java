@@ -54,6 +54,7 @@ public class CombatPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new VillagerTradeBlocker(this, villagerTradingEnabled), this);
         Bukkit.getPluginManager().registerEvents(new CombatLogoutListener(this), this);
         Bukkit.getPluginManager().registerEvents(new DummyListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new NoOpgapEatListener(this), this);
 
         // FastLeafDecay-Listener
         getServer().getPluginManager().registerEvents(new BlockBreakEventListener(), this);
