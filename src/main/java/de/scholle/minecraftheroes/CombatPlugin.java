@@ -27,7 +27,8 @@ public class CombatPlugin extends JavaPlugin {
     private boolean villagerTradingEnabled;
     private boolean loseLifeOnLogoutDuringCombat;
     private boolean noNether;
-    private boolean noTotems; // neu
+    private boolean noTotems;
+    private boolean fireworkPlacementAllowed;
 
     private String messagePrefix;
 
@@ -43,12 +44,14 @@ public class CombatPlugin extends JavaPlugin {
         villagerTradingEnabled = config.getBoolean("villagerTradingEnabled", true);
         loseLifeOnLogoutDuringCombat = config.getBoolean("loseLifeOnLogoutDuringCombat", true);
         noNether = config.getBoolean("nonether", true);
-        noTotems = config.getBoolean("NoTotems", true); // neu
+        noTotems = config.getBoolean("NoTotems", true);
+        fireworkPlacementAllowed = config.getBoolean("fireworkPlacementAllowed", false);
 
         getLogger().info("[DEBUG] Villager Trading Enabled: " + villagerTradingEnabled);
         getLogger().info("[DEBUG] Lose life on logout during combat: " + loseLifeOnLogoutDuringCombat);
         getLogger().info("[DEBUG] Nether disabled: " + noNether);
         getLogger().info("[DEBUG] NoTotems enabled: " + noTotems);
+        getLogger().info("[DEBUG] Firework placement allowed: " + fireworkPlacementAllowed);
 
         this.livesStorage = new LivesStorage(this);
         this.combatManager = new CombatManager(this);
@@ -63,8 +66,7 @@ public class CombatPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new NoOpgapEatListener(this), this);
         Bukkit.getPluginManager().registerEvents(new NetherEnterBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new BlockBreakEventListener(), this);
-
-        // Neu: NoTotemListener registrieren
+        Bukkit.getPluginManager().registerEvents(new FireworkUseBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new NoTotemListener(this), this);
 
         getCommand("lives").setExecutor(new LivesCommand(this));
@@ -145,8 +147,11 @@ public class CombatPlugin extends JavaPlugin {
         return noNether;
     }
 
-    // Neu
     public boolean isNoTotems() {
         return noTotems;
+    }
+
+    public boolean isFireworkPlacementAllowed() {
+        return fireworkPlacementAllowed;
     }
 }

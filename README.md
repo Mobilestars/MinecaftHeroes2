@@ -50,8 +50,11 @@ keepInventoryPercentageCombat: 0.5 #50%
 keepInventoryPercentageNatural: 0.0 #00%  
 dummy:  
 enabled: true  
-despawn-time: 30 #Sekunden  
+despawn-time: 30 #Sekunden
 noopgap: true
+noNether: true
+NoTotems: true
+fireworkPlacementAllowed: false
 
 </details>
 
@@ -71,7 +74,8 @@ noopgap: true
 | No Nether           | ✅ Fertig          |
 | No OPGap            | ✅ Fertig          |
 | No Punch            | ✅ Fertig          |
-| No RocketLauncher   | ✅ Fertig          |
+| No Rocket Launcher  | ✅ Fertig          |
+| No Rockets          | ✅ Fertig          |
 | No Totems           | ✅ Fertig          |
 | Prefix              | ✅ Fertig          |
 | Trading             | ✅ Fertig          |
@@ -102,7 +106,6 @@ noopgap: true
 | No Netherite               | Offen    |
 | Playtime                   | Offen    |
 | Regeln                     | Offen    |
-| Rockets                    | Offen    |
 | Seelen Armulett            | Offen    |
 | Trident-Combat             | Offen    |
 | Wiki                       | Offen    |

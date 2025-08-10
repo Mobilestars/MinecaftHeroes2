@@ -11,3 +11,4 @@ dummy:
 noopgap: true
 noNether: true
 NoTotems: true
+fireworkPlacementAllowed: false
