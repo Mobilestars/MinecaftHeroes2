@@ -1,8 +1,9 @@
 package de.scholle.minecraftheroes;
 
-import de.scholle.minecraftheroes.leafdecay.BlockBreakEventListener;
 import de.scholle.minecraftheroes.dummy.DummyListener;
 import de.scholle.minecraftheroes.dummy.ListDummysCommand;
+import de.scholle.minecraftheroes.leafdecay.BlockBreakEventListener;
+import de.scholle.minecraftheroes.NoNetheriteListener;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -29,6 +30,7 @@ public class CombatPlugin extends JavaPlugin {
     private boolean noNether;
     private boolean noTotems;
     private boolean fireworkPlacementAllowed;
+    private boolean noNetherite;
 
     private String messagePrefix;
 
@@ -46,12 +48,14 @@ public class CombatPlugin extends JavaPlugin {
         noNether = config.getBoolean("nonether", true);
         noTotems = config.getBoolean("NoTotems", true);
         fireworkPlacementAllowed = config.getBoolean("fireworkPlacementAllowed", false);
+        noNetherite = config.getBoolean("noNetherite", true);
 
         getLogger().info("[DEBUG] Villager Trading Enabled: " + villagerTradingEnabled);
         getLogger().info("[DEBUG] Lose life on logout during combat: " + loseLifeOnLogoutDuringCombat);
         getLogger().info("[DEBUG] Nether disabled: " + noNether);
         getLogger().info("[DEBUG] NoTotems enabled: " + noTotems);
         getLogger().info("[DEBUG] Firework placement allowed: " + fireworkPlacementAllowed);
+        getLogger().info("[DEBUG] NoNetherite enabled: " + noNetherite);
 
         this.livesStorage = new LivesStorage(this);
         this.combatManager = new CombatManager(this);
@@ -68,6 +72,7 @@ public class CombatPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BlockBreakEventListener(), this);
         Bukkit.getPluginManager().registerEvents(new FireworkUseBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new NoTotemListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new NoNetheriteListener(this), this);
 
         getCommand("lives").setExecutor(new LivesCommand(this));
         getCommand("lives").setTabCompleter(new CombatTabCompleter());
@@ -153,5 +158,9 @@ public class CombatPlugin extends JavaPlugin {
 
     public boolean isFireworkPlacementAllowed() {
         return fireworkPlacementAllowed;
+    }
+
+    public boolean isNoNetherite() {
+        return noNetherite;
     }
 }

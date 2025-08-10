@@ -55,6 +55,7 @@ noopgap: true
 noNether: true
 NoTotems: true
 fireworkPlacementAllowed: false
+noNetherite: true
 
 </details>
 
