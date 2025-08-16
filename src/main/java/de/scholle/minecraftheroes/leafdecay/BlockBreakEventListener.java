@@ -26,7 +26,6 @@ public class BlockBreakEventListener implements Listener {
         Block block = event.getBlock();
         visited.clear();
 
-        // Wenn ein Log zerstört wird → Prüfen, ob es das letzte in der Nähe war
         if (Tag.LOGS.isTagged(block.getType())) {
             for (BlockFace face : neighbours) {
                 Block neighbour = block.getRelative(face);
@@ -43,7 +42,7 @@ public class BlockBreakEventListener implements Listener {
         Block leaf = event.getBlock();
 
         if (!isLeafConnectedToLog(leaf)) {
-            event.setCancelled(true); // Normales Verrotten verhindern
+            event.setCancelled(true);
             breakLeaf(leaf, true);
         }
     }
@@ -63,12 +62,9 @@ public class BlockBreakEventListener implements Listener {
 
     private boolean isValidLeaf(Block block) {
         if (!(block.getBlockData() instanceof Leaves leafBlock)) return false;
-        return !leafBlock.isPersistent(); // Nur natürliche Blätter
+        return !leafBlock.isPersistent();
     }
 
-    /**
-     * Prüft, ob ein Blatt noch in Reichweite eines Logs ist
-     */
     private boolean isLeafConnectedToLog(Block leaf) {
         Set<Block> checked = new HashSet<>();
         Queue<Block> toCheck = new LinkedList<>();
@@ -79,7 +75,7 @@ public class BlockBreakEventListener implements Listener {
             if (!checked.add(current)) continue;
 
             if (Tag.LOGS.isTagged(current.getType())) {
-                return true; // Log gefunden → noch verbunden
+                return true;
             }
 
             if (current.getBlockData() instanceof Leaves) {
@@ -88,6 +84,6 @@ public class BlockBreakEventListener implements Listener {
                 }
             }
         }
-        return false; // Kein Log mehr in Reichweite
+        return false;
     }
 }

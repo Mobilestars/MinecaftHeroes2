@@ -46,7 +46,6 @@ public class NoNetheriteListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         int rawSlot = event.getRawSlot();
 
-        // Armor-Slot Blockade
         if (rawSlot >= 5 && rawSlot <= 8) {
             ItemStack currentItem = event.getCurrentItem();
             ItemStack cursorItem = event.getCursor();
@@ -66,7 +65,6 @@ public class NoNetheriteListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
-        // Rechtsklick-Anziehen blockieren
         if (item != null && isNetheriteArmor(item.getType()) && event.getHand() == EquipmentSlot.HAND) {
             event.setCancelled(true);
             plugin.sendMessage(player, ChatColor.RED + "Das Anlegen von Netherite-Rüstung ist deaktiviert!");
