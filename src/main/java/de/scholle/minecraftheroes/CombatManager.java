@@ -9,12 +9,12 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
+import net.kyori.adventure.text.Component;
 
 import java.util.*;
 
@@ -82,39 +82,55 @@ public class CombatManager implements Listener {
             int lives = plugin.getLives(uuid) - 1;
             if (lives <= 0) {
                 plugin.removePlayer(uuid);
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                    player.sendMessage("§4Du hast alle deine Leben verloren und bist jetzt raus.");
-                    player.setGameMode(GameMode.SPECTATOR);
-                }, 2L);
+
+                String action = plugin.getConfig().getString("player-death-action", "spec").toLowerCase(); // "spec", "ban", "timeout"
+                switch (action) {
+                    case "ban" -> {
+                        player.kick(Component.text("§cDu hast alle deine Leben verloren!"));
+                        Bukkit.getBanList(org.bukkit.BanList.Type.NAME)
+                                .addBan(player.getName(), "Alle Leben verloren", null, null);
+                    }
+                    case "timeout" -> {
+                        long timeoutSeconds = plugin.getConfig().getLong("death-timeout-seconds", 60);
+                        player.setGameMode(GameMode.SPECTATOR);
+                        plugin.sendMessage(player, "§cDu bist für " + timeoutSeconds + " Sekunden gesperrt.");
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                if (player.isOnline()) {
+                                    player.setGameMode(GameMode.SURVIVAL);
+                                    plugin.sendMessage(player, "§aDeine Sperre ist vorbei, du bist wieder im Spiel!");
+                                }
+                            }
+                        }.runTaskLater(plugin, timeoutSeconds * 20L); // 20 Ticks = 1 Sekunde
+                    }
+                    default -> { // spec
+                        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                            player.sendMessage("§4Du hast alle deine Leben verloren und bist jetzt raus.");
+                            player.setGameMode(GameMode.SPECTATOR);
+                        }, 2L);
+                    }
+                }
             } else {
                 plugin.setLives(uuid, lives);
                 plugin.sendMessage(player,"§cDu hast ein Leben im Kampf verloren. Verbleibende Leben: " + lives);
             }
         }
 
+        // Inventar behalten / Verlust berechnen
         ItemStack[] inventory = player.getInventory().getContents();
         List<Integer> occupied = new ArrayList<>();
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] != null && inventory[i].getType() != Material.AIR) {
-                occupied.add(i);
-            }
+            if (inventory[i] != null && inventory[i].getType() != Material.AIR) occupied.add(i);
         }
-
         int keepCount = (int) Math.round(occupied.size() * keepPct);
         Collections.shuffle(occupied);
         List<Integer> keepSlots = occupied.subList(0, Math.min(keepCount, occupied.size()));
-
         ItemStack[] kept = new ItemStack[inventory.length];
         for (int i = 0; i < inventory.length; i++) {
-            if (keepSlots.contains(i)) {
-                kept[i] = inventory[i];
-            }
+            if (keepSlots.contains(i)) kept[i] = inventory[i];
         }
-
-        for (Integer slot : keepSlots) {
-            player.getInventory().setItem(slot, null);
-        }
-
+        for (Integer slot : keepSlots) player.getInventory().setItem(slot, null);
         Bukkit.getScheduler().runTask(plugin, () -> {
             player.getInventory().setContents(kept);
             plugin.sendMessage(player,"§6Ein Teil deines Inventars wurde behalten.");
@@ -125,21 +141,17 @@ public class CombatManager implements Listener {
             lastCombatOpponent.remove(uuid);
         }
 
-        // --- Death Animation ---
+        // Death Animation
         int frames = plugin.getConfig().getInt("death-animation-frames", 10);
         new BukkitRunnable() {
             int currentFrame = 1;
             @Override
             public void run() {
-                if (currentFrame > frames) {
-                    cancel();
-                    return;
-                }
+                if (currentFrame > frames) { cancel(); return; }
                 String frameFile = String.format("%03d.png", currentFrame);
-                // TODO: Hier Map oder GUI-Renderer einsetzen, um Frame anzuzeigen
                 currentFrame++;
             }
-        }.runTaskTimer(plugin, 0L, 1L); // 1 Tick pro Frame
+        }.runTaskTimer(plugin, 0L, 1L);
     }
 
     public boolean isInCombat(UUID uuid) {

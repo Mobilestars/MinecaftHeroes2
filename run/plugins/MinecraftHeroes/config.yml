@@ -15,3 +15,5 @@ NoTotems: true
 fireworkPlacementAllowed: false
 noNetherite: true
 death-animation-frames: 20
+player-death-action: "timeout" # "spec", "ban", "timeout"
+death-timeout-seconds: 120     # nur relevant bei timeout

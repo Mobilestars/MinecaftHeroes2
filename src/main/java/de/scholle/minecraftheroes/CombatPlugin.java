@@ -45,7 +45,7 @@ public class CombatPlugin extends JavaPlugin {
         FileConfiguration config = getConfig();
         villagerTradingEnabled = config.getBoolean("villagerTradingEnabled", true);
         loseLifeOnLogoutDuringCombat = config.getBoolean("loseLifeOnLogoutDuringCombat", true);
-        noNether = config.getBoolean("nonether", true);
+        noNether = config.getBoolean("noNether", true);
         noTotems = config.getBoolean("NoTotems", true);
         fireworkPlacementAllowed = config.getBoolean("fireworkPlacementAllowed", false);
         noNetherite = config.getBoolean("noNetherite", true);
@@ -59,7 +59,6 @@ public class CombatPlugin extends JavaPlugin {
 
         this.livesStorage = new LivesStorage(this);
 
-        // --- Gespeicherte Leben laden ---
         this.lives.putAll(livesStorage.loadLives());
 
         this.combatManager = new CombatManager(this);
