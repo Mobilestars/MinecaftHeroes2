@@ -58,6 +58,10 @@ public class CombatPlugin extends JavaPlugin {
         getLogger().info("[DEBUG] NoNetherite enabled: " + noNetherite);
 
         this.livesStorage = new LivesStorage(this);
+
+        // --- Gespeicherte Leben laden ---
+        this.lives.putAll(livesStorage.loadLives());
+
         this.combatManager = new CombatManager(this);
         this.displayManager = new CombatDisplayManager(this, this.combatManager);
 

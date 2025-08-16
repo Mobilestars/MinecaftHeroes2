@@ -15,6 +15,9 @@ public class CombatDisplayManager {
     private final CombatPlugin plugin;
     private final CombatManager combatManager;
 
+    private static final String FULL_HEART = "\uE000";
+    private static final String EMPTY_HEART = "\uE001";
+
     public CombatDisplayManager(CombatPlugin plugin, CombatManager combatManager) {
         this.plugin = plugin;
         this.combatManager = combatManager;
@@ -46,15 +49,11 @@ public class CombatDisplayManager {
                         if (lives == 0) {
                             player.sendActionBar(Component.empty());
                         } else {
-                            TextComponent.Builder hearts = Component.text();
+                            StringBuilder heartsStr = new StringBuilder();
                             for (int i = 0; i < 3; i++) {
-                                if (i < lives) {
-                                    hearts.append(Component.text("❤").color(NamedTextColor.AQUA));
-                                } else {
-                                    hearts.append(Component.text("❤").color(NamedTextColor.DARK_GRAY));
-                                }
+                                heartsStr.append(i < lives ? FULL_HEART : EMPTY_HEART);
                             }
-                            player.sendActionBar(hearts.build());
+                            player.sendActionBar(Component.text(heartsStr.toString()));
                         }
                     }
                 }

@@ -1,2 +1,259 @@
-graves: []
-brokengraves: []
+graves:
+- ==: com.bencodez.gravestonesplus.graves.GravesConfig
+  DestroyedTime: 0
+  Destroyed: false
+  PlayerName: Mobilestars109
+  X: -1051
+  Y: 109
+  Time: 1755338657534
+  Z: -1109
+  Items:
+    0:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:arrow
+      count: 23
+      schema_version: 1
+    -1:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:netherite_helmet
+      count: 1
+      components:
+        minecraft:damage: '40'
+      schema_version: 1
+    -2:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -3:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    3:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:armor_stand
+      count: 2
+      components:
+        minecraft:custom_name: '{extra:[{bold:0b,color:"yellow",italic:0b,obfuscated:0b,strikethrough:0b,text:"Noch
+          21s",underlined:0b}],text:""}'
+      schema_version: 1
+    -4:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -5:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+  UUID: c828a9b9-2278-4d43-b60e-473de6b377a2
+  World: 2326a609-4e0a-4430-8f9d-518b08bad4db
+  EXP: 0
+  DeathMessage: Mobilestars109 was slain by Zombie
+- ==: com.bencodez.gravestonesplus.graves.GravesConfig
+  DestroyedTime: 0
+  Destroyed: false
+  PlayerName: Mobilestars109
+  X: -1011
+  Y: 87
+  Time: 1755338860516
+  Z: -1094
+  Items:
+    0:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:arrow
+      count: 62
+      schema_version: 1
+    -1:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -2:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -3:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -4:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    4:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:flint_and_steel
+      count: 1
+      schema_version: 1
+    -5:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+  UUID: c828a9b9-2278-4d43-b60e-473de6b377a2
+  World: 2326a609-4e0a-4430-8f9d-518b08bad4db
+  EXP: 21
+  DeathMessage: Mobilestars109 tried to swim in lava to escape Mobilestars109
+brokengraves:
+- ==: com.bencodez.gravestonesplus.graves.GravesConfig
+  DestroyedTime: 1755338823685
+  Destroyed: true
+  PlayerName: Mobilestars109
+  X: -1010
+  Y: 87
+  Time: 1755338615585
+  Z: -1097
+  Items:
+    -1:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    1:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:bow
+      count: 1
+      components:
+        minecraft:damage: '57'
+      schema_version: 1
+    -2:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    2:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:porkchop
+      count: 1
+      schema_version: 1
+    -3:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -4:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -5:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+  UUID: c828a9b9-2278-4d43-b60e-473de6b377a2
+  World: 2326a609-4e0a-4430-8f9d-518b08bad4db
+  EXP: 28
+  DeathMessage: Mobilestars109 tried to swim in lava
+- ==: com.bencodez.gravestonesplus.graves.GravesConfig
+  DestroyedTime: 1755338140261
+  Destroyed: true
+  PlayerName: Mobilestars109
+  X: -1071
+  Y: 103
+  Time: 1755338123616
+  Z: -1069
+  Items:
+    0:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:arrow
+      count: 50
+      schema_version: 1
+    -1:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:netherite_helmet
+      count: 1
+      components:
+        minecraft:damage: '14'
+      schema_version: 1
+    1:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:bow
+      count: 1
+      components:
+        minecraft:damage: '17'
+      schema_version: 1
+    -2:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -3:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -4:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -5:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+  UUID: c828a9b9-2278-4d43-b60e-473de6b377a2
+  World: 2326a609-4e0a-4430-8f9d-518b08bad4db
+  EXP: 84
+  DeathMessage: Mobilestars109 was shot by Mobilestars109
+- ==: com.bencodez.gravestonesplus.graves.GravesConfig
+  DestroyedTime: 1755338444365
+  Destroyed: true
+  PlayerName: Mobilestars109
+  X: -1078
+  Y: 104
+  Time: 1755338419842
+  Z: -1067
+  Items:
+    0:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:arrow
+      count: 39
+      schema_version: 1
+    -1:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -2:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -3:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -4:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -5:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+  UUID: c828a9b9-2278-4d43-b60e-473de6b377a2
+  World: 2326a609-4e0a-4430-8f9d-518b08bad4db
+  EXP: 42
+  DeathMessage: Mobilestars109 was shot by Mobilestars109

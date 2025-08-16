@@ -1,4 +1,5 @@
 message-prefix: "§6[Helden]" #§<Minecraft Farbcode> 6≙gold
+combat-duration-seconds: 30
 fireworkCrossbowEnabled: false
 allow-punch: false
 villagerTradingEnabled: false
@@ -13,3 +14,4 @@ noNether: true
 NoTotems: true
 fireworkPlacementAllowed: false
 noNetherite: true
+death-animation-frames: 20

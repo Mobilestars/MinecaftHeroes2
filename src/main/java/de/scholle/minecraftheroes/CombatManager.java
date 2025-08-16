@@ -4,12 +4,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
@@ -18,23 +23,49 @@ public class CombatManager implements Listener {
     private final CombatPlugin plugin;
     private final Map<UUID, Long> combatTimestamps = new HashMap<>();
     private final Map<UUID, UUID> lastCombatOpponent = new HashMap<>();
+    private final long combatDurationMs;
 
     public CombatManager(CombatPlugin plugin) {
         this.plugin = plugin;
+        int seconds = plugin.getConfig().getInt("combat-duration-seconds", 30);
+        this.combatDurationMs = seconds * 1000L;
+    }
+
+    // Spieler kommt in den Kampfmodus
+    private void enterCombat(Player a, Player b) {
+        long now = System.currentTimeMillis();
+        combatTimestamps.put(a.getUniqueId(), now);
+        combatTimestamps.put(b.getUniqueId(), now);
+        lastCombatOpponent.put(a.getUniqueId(), b.getUniqueId());
+        lastCombatOpponent.put(b.getUniqueId(), a.getUniqueId());
     }
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
-        if (!(event.getEntity() instanceof Player) || !(event.getDamager() instanceof Player)) return;
+        if (!(event.getEntity() instanceof Player damaged)) return;
 
-        Player damaged = (Player) event.getEntity();
-        Player damager = (Player) event.getDamager();
+        Player damager = null;
 
-        long now = System.currentTimeMillis();
-        combatTimestamps.put(damaged.getUniqueId(), now);
-        combatTimestamps.put(damager.getUniqueId(), now);
-        lastCombatOpponent.put(damaged.getUniqueId(), damager.getUniqueId());
-        lastCombatOpponent.put(damager.getUniqueId(), damaged.getUniqueId());
+        if (event.getDamager() instanceof Player p) {
+            damager = p;
+        } else if (event.getDamager() instanceof Projectile projectile) {
+            if (projectile.getShooter() instanceof Player shooter) {
+                damager = shooter;
+            }
+        } else if (event.getDamager() instanceof TNTPrimed tnt) {
+            if (tnt.hasMetadata("manual")) {
+                String shooterId = tnt.getMetadata("manual").get(0).asString();
+                damager = Bukkit.getPlayer(UUID.fromString(shooterId));
+            }
+        }
+
+        if (damager != null) {
+            enterCombat(damaged, damager);
+        }
+    }
+
+    public void markTNTManual(TNTPrimed tnt, Player shooter) {
+        tnt.setMetadata("manual", new FixedMetadataValue(plugin, shooter.getUniqueId().toString()));
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -43,13 +74,11 @@ public class CombatManager implements Listener {
         UUID uuid = player.getUniqueId();
 
         long now = System.currentTimeMillis();
-        boolean inCombat = (now - combatTimestamps.getOrDefault(uuid, 0L)) <= 30000;
+        boolean inCombat = (now - combatTimestamps.getOrDefault(uuid, 0L)) <= combatDurationMs;
 
         double keepPct = inCombat ? plugin.getKeepInventoryPercentageCombat() : plugin.getKeepInventoryPercentageNatural();
 
-        if (!inCombat) {
-            plugin.sendMessage(player,"§aDu bist außerhalb des Kampfes gestorben. Kein Leben verloren.");
-        } else {
+        if (inCombat) {
             int lives = plugin.getLives(uuid) - 1;
             if (lives <= 0) {
                 plugin.removePlayer(uuid);
@@ -95,10 +124,26 @@ public class CombatManager implements Listener {
             combatTimestamps.remove(uuid);
             lastCombatOpponent.remove(uuid);
         }
+
+        // --- Death Animation ---
+        int frames = plugin.getConfig().getInt("death-animation-frames", 10);
+        new BukkitRunnable() {
+            int currentFrame = 1;
+            @Override
+            public void run() {
+                if (currentFrame > frames) {
+                    cancel();
+                    return;
+                }
+                String frameFile = String.format("%03d.png", currentFrame);
+                // TODO: Hier Map oder GUI-Renderer einsetzen, um Frame anzuzeigen
+                currentFrame++;
+            }
+        }.runTaskTimer(plugin, 0L, 1L); // 1 Tick pro Frame
     }
 
     public boolean isInCombat(UUID uuid) {
-        return (System.currentTimeMillis() - combatTimestamps.getOrDefault(uuid, 0L)) <= 30000;
+        return (System.currentTimeMillis() - combatTimestamps.getOrDefault(uuid, 0L)) <= combatDurationMs;
     }
 
     public UUID getOpponent(UUID uuid) {
@@ -118,9 +163,8 @@ public class CombatManager implements Listener {
         long now = System.currentTimeMillis();
         long combatTimestamp = combatTimestamps.getOrDefault(uuid, 0L);
         long elapsed = now - combatTimestamp;
-        int totalCombatDuration = 30000;
 
-        int timeLeft = (int) ((totalCombatDuration - elapsed) / 1000);
+        int timeLeft = (int) ((combatDurationMs - elapsed) / 1000);
         return Math.max(timeLeft, 0);
     }
 }
