@@ -140,8 +140,8 @@ Alle Rechte am Originalkonzept und -material liegen bei den jeweiligen Rechteinh
 
 ## 📬 Kontakt
 
-Für Anfragen zur öffentlichen Nutzung:  
-Discord: **scholle109**(schnellste Antwort)
+Anfrage für öffentliche Nutzung:  
+Discord: **[Discord](https://discord.gg/95ekxaGNB3)** (fastest response)  
 E-Mail: **jannik.scholl.mc@gmail.com**
 
 ---
