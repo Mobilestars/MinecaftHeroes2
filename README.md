@@ -215,6 +215,7 @@ To get the best "Heroes feeling," we recommend these settings in `config.yml` of
 |---------------------|-------------|
 | Combat              | ✅ Finished |
 | Config              | ✅ Finished |
+| Duel                | ✅ Finished |
 | Dummy               | ✅ Beta     |
 | GitHub              | ✅ Finished |
 | Graves              | ✅ [GraveStonesPlus](https://www.spigotmc.org/resources/gravestonesplus.95132) |
@@ -243,7 +244,6 @@ To get the best "Heroes feeling," we recommend these settings in `config.yml` of
 | ClearDummys on Serverclose | Open     |
 | Cobwebs                    | Open     |
 | DeathScreen                | Open     |
-| Duel                       | Open     |
 | EndChunks                  | Open     |
 | Enderpearls                | Open     |
 | Glowing                    | Open     |
