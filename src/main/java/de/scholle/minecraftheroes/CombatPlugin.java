@@ -8,6 +8,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import de.scholle.minecraftheroes.link.DiscordCommand;
+import de.scholle.minecraftheroes.link.TexturepackCommand;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -81,6 +83,12 @@ public class CombatPlugin extends JavaPlugin {
         getCommand("lives").setTabCompleter(new CombatTabCompleter());
         getCommand("heart").setTabCompleter(new CombatTabCompleter());
         getCommand("listdummys").setExecutor(new ListDummysCommand());
+
+        getCommand("discord").setExecutor(new DiscordCommand(this));
+        getCommand("dc").setExecutor(new DiscordCommand(this));
+
+        getCommand("texturepack").setExecutor(new TexturepackCommand(this));
+        getCommand("resourcepack").setExecutor(new TexturepackCommand(this));
 
         getLogger().info("CombatPlugin enabled.");
     }
