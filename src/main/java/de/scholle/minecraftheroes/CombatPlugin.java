@@ -1,19 +1,17 @@
 package de.scholle.minecraftheroes;
 
+import de.scholle.minecraftheroes.commands.DuelCommand;
 import de.scholle.minecraftheroes.dummy.DummyListener;
 import de.scholle.minecraftheroes.dummy.ListDummysCommand;
 import de.scholle.minecraftheroes.leafdecay.BlockBreakEventListener;
-import de.scholle.minecraftheroes.NoNetheriteListener;
+import de.scholle.minecraftheroes.links.DiscordCommand;
+import de.scholle.minecraftheroes.links.TexturepackCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import de.scholle.minecraftheroes.link.DiscordCommand;
-import de.scholle.minecraftheroes.link.TexturepackCommand;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 
 public class CombatPlugin extends JavaPlugin {
 
@@ -23,6 +21,7 @@ public class CombatPlugin extends JavaPlugin {
     private CombatManager combatManager;
     private CombatDisplayManager displayManager;
     private LivesStorage livesStorage;
+    private DuelCommand duelCommand;
 
     private final HashMap<UUID, Integer> lives = new HashMap<>();
     private final HashSet<UUID> awaitingRevive = new HashSet<>();
@@ -52,19 +51,14 @@ public class CombatPlugin extends JavaPlugin {
         fireworkPlacementAllowed = config.getBoolean("fireworkPlacementAllowed", false);
         noNetherite = config.getBoolean("noNetherite", true);
 
-        getLogger().info("[DEBUG] Villager Trading Enabled: " + villagerTradingEnabled);
-        getLogger().info("[DEBUG] Lose life on logout during combat: " + loseLifeOnLogoutDuringCombat);
-        getLogger().info("[DEBUG] Nether disabled: " + noNether);
-        getLogger().info("[DEBUG] NoTotems enabled: " + noTotems);
-        getLogger().info("[DEBUG] Firework placement allowed: " + fireworkPlacementAllowed);
-        getLogger().info("[DEBUG] NoNetherite enabled: " + noNetherite);
-
         this.livesStorage = new LivesStorage(this);
-
         this.lives.putAll(livesStorage.loadLives());
 
         this.combatManager = new CombatManager(this);
         this.displayManager = new CombatDisplayManager(this, this.combatManager);
+
+        // DuelCommand registrieren
+        this.duelCommand = new DuelCommand(this, this.combatManager);
 
         Bukkit.getPluginManager().registerEvents(this.combatManager, this);
         Bukkit.getPluginManager().registerEvents(new FireworkCrossbowBlocker(this), this);
@@ -86,9 +80,11 @@ public class CombatPlugin extends JavaPlugin {
 
         getCommand("discord").setExecutor(new DiscordCommand(this));
         getCommand("dc").setExecutor(new DiscordCommand(this));
-
         getCommand("texturepack").setExecutor(new TexturepackCommand(this));
         getCommand("resourcepack").setExecutor(new TexturepackCommand(this));
+
+        // Duel commands registrieren
+        getCommand("duel").setExecutor(this.duelCommand);
 
         getLogger().info("CombatPlugin enabled.");
     }
@@ -173,5 +169,10 @@ public class CombatPlugin extends JavaPlugin {
 
     public boolean isNoNetherite() {
         return noNetherite;
+    }
+
+    // Zugriff auf DuelCommand, falls du von außen prüfen willst
+    public DuelCommand getDuelCommand() {
+        return duelCommand;
     }
 }

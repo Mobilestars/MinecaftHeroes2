@@ -9,11 +9,20 @@ commands:
   lives:
     description: Check or modify player lives
     usage: /lives <check|add|set> <player> [amount]
-  linkheart:
-    description: Generiert zufällige Linked-Partner
-    usage: /linkheart generate
   heart:
     description: Gib ein Herz, um deinen Partner zu retten
     usage: /heart <player>
   listdummys:
-      description: Listet alle aktiven Dummys mit Positionen
+    description: Listet alle aktiven Dummys mit Positionen
+  discord:
+    description: Zeigt den Discord-Link
+  dc:
+    description: Zeigt den Discord-Link
+  texturepack:
+    description: Gibt den Texturepack-Link
+  resourcepack:
+    description: Gibt den Texturepack-Link
+  duel:
+    description: Starte ein Duell oder akzeptiere eine Anfrage
+    usage: /duel <Spieler> | /duel accept
+    aliases: [ duell ]

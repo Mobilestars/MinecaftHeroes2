@@ -1,5 +1,6 @@
-message-prefix: "§6[Helden]" #§<Minecraft Farbcode> 6≙gold
+message-prefix: "[§bHelden§r]" #§<Minecraft Farbcode> 6≙gold
 combat-duration-seconds: 30
+heart-color: "#FF0000"
 fireworkCrossbowEnabled: false
 allow-punch: false
 villagerTradingEnabled: false
@@ -17,3 +18,5 @@ noNetherite: true
 death-animation-frames: 20
 player-death-action: "timeout" # "spec", "ban", "timeout"
 death-timeout-seconds: 120     # nur relevant bei timeout
+discord-link: "https://discord.gg/deinserver"
+texturepack-link: "https://example.com/texturepack.zip"

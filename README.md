@@ -65,6 +65,7 @@ Damit das Plugin das beste „Heldenfeeling“ bietet, empfehlen wir folgende Ei
 |---------------------|-------------------|
 | Combat              | ✅ Fertig          |
 | Config              | ✅ Fertig          |
+| Duel                | ✅ Fertig          |
 | Dummy               | ✅ Beta            |
 | GitHub              | ✅ Fertig          |
 | Graves              | ✅ [GraveStonesPlus](https://www.spigotmc.org/resources/gravestonesplus.95132) |
@@ -93,7 +94,6 @@ Damit das Plugin das beste „Heldenfeeling“ bietet, empfehlen wir folgende Ei
 | ClearDummys on Serverclose | Offen    |
 | Cobwebs                    | Offen    |
 | DeathScreen                | Offen    |
-| Duel                       | Offen    |
 | EndChunks                  | Offen    |
 | Enderpearls                | Offen    |
 | Glowing                    | Offen    |

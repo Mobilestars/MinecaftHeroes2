@@ -19,4 +19,48 @@ graves:
   World: 2326a609-4e0a-4430-8f9d-518b08bad4db
   EXP: 0
   DeathMessage: Mobilestars109 was slain by Zombie
+- ==: com.bencodez.gravestonesplus.graves.GravesConfig
+  DestroyedTime: 0
+  Destroyed: false
+  PlayerName: Canselguellover
+  X: -1086
+  Y: 107
+  Time: 1755395380532
+  Z: -1056
+  Items:
+    -1:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -2:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -3:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -4:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    -5:
+      ==: org.bukkit.inventory.ItemStack
+      schema_version: 1
+      id: minecraft:air
+      DataVersion: 4440
+    9:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4440
+      id: minecraft:wheat_seeds
+      count: 2
+      schema_version: 1
+  UUID: 667642c1-dc29-4aa8-aac8-d9ccb98ac78d
+  World: 2326a609-4e0a-4430-8f9d-518b08bad4db
+  EXP: 0
+  DeathMessage: Canselguellover was shot by Mobilestars109
 brokengraves: []
