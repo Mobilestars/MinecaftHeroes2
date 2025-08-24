@@ -1,6 +1,5 @@
 package de.scholle.minecraftheroes;
 
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,7 +20,8 @@ public class NetherEnterBlocker implements Listener {
         World.Environment toEnv = event.getTo().getWorld().getEnvironment();
         if (toEnv == World.Environment.NETHER) {
             event.setCancelled(true);
-            plugin.sendMessage(event.getPlayer(), "§cDer Nether ist derzeit deaktiviert.");
+            String msg = plugin.getLanguage().getMessage("nether.disabled");
+            plugin.sendMessage(event.getPlayer(), msg);
         }
     }
 }

@@ -29,14 +29,18 @@ public class CombatLogoutListener implements Listener {
 
             if (newLives <= 0) {
                 plugin.removePlayer(uuid);
-                Bukkit.getLogger().info(player.getName() + " hat während des Kampfes ausgeloggt und alle Leben verloren.");
+                Bukkit.getLogger().info(plugin.getLanguage()
+                        .getMessage("combat.logout.lost_all_lives")
+                        .replace("%player%", player.getName()));
             } else {
                 plugin.setLives(uuid, newLives);
-                Bukkit.getLogger().info(player.getName() + " hat während des Kampfes ausgeloggt und ein Leben verloren. Verbleibende Leben: " + newLives);
+                Bukkit.getLogger().info(plugin.getLanguage()
+                        .getMessage("combat.logout.lost_one_life")
+                        .replace("%player%", player.getName())
+                        .replace("%lives%", String.valueOf(newLives)));
             }
 
             CombatManager cm = plugin.getCombatManager();
-
             UUID opponent = cm.getOpponent(uuid);
 
             cm.resetCombat(uuid);

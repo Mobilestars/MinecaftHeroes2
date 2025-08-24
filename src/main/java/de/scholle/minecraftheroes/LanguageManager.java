@@ -46,6 +46,14 @@ public class LanguageManager {
         }
     }
 
+    public String getMessage(String key) {
+        return get(key, null);
+    }
+
+    public String getMessage(String key, Map<String, String> placeholders) {
+        return get(key, placeholders);
+    }
+
     public String get(String key, Map<String, String> placeholders) {
         String msg = messages.getOrDefault(key, key);
         if (placeholders != null) {

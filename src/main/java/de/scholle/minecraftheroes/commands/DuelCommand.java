@@ -16,8 +16,6 @@ public class DuelCommand implements CommandExecutor {
 
     private final CombatPlugin plugin;
     private final CombatManager combatManager;
-
-    // Duelanfragen: SpielerUUID -> GegnerUUID
     private final Map<UUID, UUID> duelRequests = new HashMap<>();
 
     public DuelCommand(CombatPlugin plugin, CombatManager combatManager) {
@@ -28,49 +26,45 @@ public class DuelCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("§cNur Spieler können Duelle starten.");
+            sender.sendMessage(plugin.getLanguage().getMessage("duel.only_players"));
             return true;
         }
 
         if (args.length == 1 && args[0].equalsIgnoreCase("accept")) {
-            // /duel accept
             UUID requesterUuid = duelRequests.remove(player.getUniqueId());
             if (requesterUuid == null) {
-                player.sendMessage("§cDu hast keine Duellanfrage zum Akzeptieren.");
+                player.sendMessage(plugin.getLanguage().getMessage("duel.no_request"));
                 return true;
             }
 
             Player requester = Bukkit.getPlayer(requesterUuid);
             if (requester == null || !requester.isOnline()) {
-                player.sendMessage("§cDer Spieler ist nicht mehr online.");
+                player.sendMessage(plugin.getLanguage().getMessage("duel.player_offline"));
                 return true;
             }
 
-            // Duel starten
             combatManager.startDuel(requester, player);
             return true;
         }
 
         if (args.length == 1) {
-            // /duel <player> -> Anfrage senden
             Player target = Bukkit.getPlayer(args[0]);
             if (target == null || !target.isOnline()) {
-                player.sendMessage("§cSpieler nicht gefunden oder offline.");
+                player.sendMessage(plugin.getLanguage().getMessage("duel.target_not_found"));
                 return true;
             }
             if (player.equals(target)) {
-                player.sendMessage("§cDu kannst kein Duell mit dir selbst starten.");
+                player.sendMessage(plugin.getLanguage().getMessage("duel.self_duel"));
                 return true;
             }
 
-            // Anfrage senden
             duelRequests.put(target.getUniqueId(), player.getUniqueId());
-            player.sendMessage("§aDuellanfrage an " + target.getName() + " gesendet!");
-            target.sendMessage("§e" + player.getName() + " möchte ein Duell mit dir starten. Tippe §a/duel accept§e zum Akzeptieren.");
+            player.sendMessage(plugin.getLanguage().getMessage("duel.request_sent").replace("{target}", target.getName()));
+            target.sendMessage(plugin.getLanguage().getMessage("duel.request_receive").replace("{player}", player.getName()));
             return true;
         }
 
-        player.sendMessage("§cBenutzung: /duel <Spieler> | /duel accept");
+        player.sendMessage(plugin.getLanguage().getMessage("duel.usage"));
         return true;
     }
 }

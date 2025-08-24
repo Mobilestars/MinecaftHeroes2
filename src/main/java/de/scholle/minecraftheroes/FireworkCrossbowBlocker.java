@@ -30,7 +30,8 @@ public class FireworkCrossbowBlocker implements Listener {
                     offHand.getType() == Material.FIREWORK_ROCKET) {
 
                 event.setCancelled(true);
-                plugin.sendMessage(player, "§cArmbrüste mit Feuerwerk sind deaktiviert.");
+                String msg = plugin.getLanguage().getMessage("firework.crossbow.disabled");
+                plugin.sendMessage(player, msg);
             }
         }
     }

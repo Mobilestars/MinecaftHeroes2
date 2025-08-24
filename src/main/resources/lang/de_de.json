@@ -1,28 +1,78 @@
 {
-  "combat.death.broadcast": "{victim} ist im Kampf gegen {killer} gestorben und hat ein Herz verloren!",
-  "combat.death.livesleft": "§cDu hast ein Leben im Kampf verloren. Verbleibende Leben: {lives}",
-  "combat.death.none": "§4Du hast alle deine Leben verloren und bist jetzt raus.",
-  "combat.death.kick": "§cDu hast alle deine Leben verloren!",
-  "combat.death.timeout.start": "§cDu bist für {time} Sekunden gesperrt.",
-  "combat.death.timeout.end": "§aDeine Sperre ist vorbei, du bist wieder im Spiel!",
+  "cobweb.limit": "Du kannst maximal %max% Cobwebs platzieren!",
 
+  "combat.actionbar": "Combat: %seconds%s",
+  "combat.actionbar.heart": "{heart}",
+  "combat.actionbar.time": "§cCombat: §6{time}s",
   "combat.attacked": "§cDu wurdest von %attacker% angegriffen!",
   "combat.attacker": "§aDu hast %victim% angegriffen!",
+  "combat.death.broadcast": "{victim} ist im Kampf gegen {killer} gestorben und hat ein Herz verloren!",
+  "combat.death.kick": "§cDu hast alle deine Leben verloren!",
+  "combat.death.livesleft": "§cDu hast ein Leben im Kampf verloren. Verbleibende Leben: {lives}",
+  "combat.death.none": "§4Du hast alle deine Leben verloren und bist jetzt raus.",
+  "combat.death.timeout.end": "§aDeine Sperre ist vorbei, du bist wieder im Spiel!",
+  "combat.death.timeout.start": "§cDu bist für {time} Sekunden gesperrt.",
+  "combat.logout.lost_all_lives": "%player% hat während des Kampfes ausgeloggt und alle Leben verloren.",
+  "combat.logout.lost_one_life": "%player% hat während des Kampfes ausgeloggt und ein Leben verloren. Verbleibende Leben: %lives%",
 
-  "combat.actionbar.time": "§cCombat: §6{time}s",
-  "combat.actionbar.heart": "{heart}",
-
-  "duel.started.self": "§aDuell gestartet mit {opponent}!",
-  "duel.started.opponent": "§c{player} hat ein Duell mit dir gestartet!",
-  "duel.ended": "§eDas Duell wurde beendet!",
-  "duel.won": "§aDu hast das Duell gewonnen, da dein Gegner gestorben ist!",
-  "duel.lost": "§eDu bist im Duell gestorben, daher verlierst du kein Leben.",
-
+  "death.kick": "§cDu hast alle deine Leben verloren!",
   "death.lives.lost": "§cDu hast ein Leben im Kampf verloren. Verbleibende Leben: {lives}",
   "death.lives.none": "§4Du hast alle deine Leben verloren und bist jetzt raus.",
-  "death.kick": "§cDu hast alle deine Leben verloren!",
-  "death.timeout.start": "§cDu bist für {time} Sekunden gesperrt.",
   "death.timeout.end": "§aDeine Sperre ist vorbei, du bist wieder im Spiel!",
+  "death.timeout.start": "§cDu bist für {time} Sekunden gesperrt.",
 
-  "inventory.keep": "§6Ein Teil deines Inventars wurde behalten."
+  "duel.ended": "§eDas Duell wurde beendet!",
+  "duel.lost": "§eDu bist im Duell gestorben, daher verlierst du kein Leben.",
+  "duel.no_request": "§cDu hast keine Duellanfrage zum Akzeptieren.",
+  "duel.only_players": "§cNur Spieler können Duelle starten.",
+  "duel.player_offline": "§cDer Spieler ist nicht mehr online.",
+  "duel.request_receive": "§e{player} möchte ein Duell mit dir starten. Tippe §a/duel accept§e zum Akzeptieren.",
+  "duel.request_sent": "§aDuellanfrage an {target} gesendet!",
+  "duel.self_duel": "§cDu kannst kein Duell mit dir selbst starten.",
+  "duel.started.opponent": "§c{player} hat ein Duell mit dir gestartet!",
+  "duel.started.self": "§aDuell gestartet mit {opponent}!",
+  "duel.target_not_found": "§cSpieler nicht gefunden oder offline.",
+  "duel.usage": "§cBenutzung: /duel <Spieler> | /duel accept",
+  "duel.won": "§aDu hast das Duell gewonnen, da dein Gegner gestorben ist!",
+  "dummies.header": "§eAktive Dummys:",
+
+  "dummies.entry": "§7{name} §8({uuid}) §7@ §f{world} §8x:{x} y:{y} z:{z}",
+  "dummies.no_permission": "§cDu hast keine Berechtigung, diesen Befehl auszuführen.",
+  "dummies.none_active": "§cEs sind derzeit keine Dummys aktiv.",
+
+  "enderpearl.limit": "Du kannst maximal %max% Enderperlen verwenden!",
+
+  "firework.crossbow.disabled": "§cArmbrüste mit Feuerwerk sind deaktiviert.",
+  "firework.use.disabled": "§cDas Zünden von Raketen ist deaktiviert.",
+
+  "inventory.keep": "§6Ein Teil deines Inventars wurde behalten.",
+
+  "lives.add.result": "Du hast %amount% Leben zu %player% hinzugefügt. Neuer Wert: %lives%",
+  "lives.add.usage": "Verwendung: /lives add <player> <amount>",
+  "lives.check.result": "Der Spieler %player% hat %lives% Leben.",
+  "lives.check.usage": "Verwendung: /lives check <player>",
+  "lives.invalid_subcommand": "Ungültiger Sub-Befehl. Verfügbare Befehle: check, add, set.",
+  "lives.no_permission": "Du hast keine Berechtigung, diesen Befehl zu verwenden.",
+  "lives.only_players": "Nur Spieler können diesen Befehl verwenden.",
+  "lives.player_not_online": "Spieler %player% ist nicht online oder existiert nicht.",
+  "lives.set.result": "Du hast die Leben von %player% auf %lives% gesetzt.",
+  "lives.set.usage": "Verwendung: /lives set <player> <amount>",
+  "lives.usage": "Verwendung: /lives <check|add|set> <player> [amount]",
+  "lives.amount_not_number": "Die Menge muss eine Zahl sein.",
+
+  "nether.disabled": "§cDer Nether ist derzeit deaktiviert.",
+
+  "nonetherite.armor.dispenser": "Dispenser können keine Netherite-Rüstung anlegen!",
+  "nonetherite.armor.equip": "Das Anlegen von Netherite-Rüstung ist deaktiviert!",
+  "nonetherite.armor.place": "Netherite-Rüstung darf hier nicht abgelegt werden!",
+  "nonetherite.tool.use": "Das Benutzen von Netherite-Werkzeugen ist deaktiviert!",
+  "nonetherite.weapon.use": "Das Benutzen von Netherite-Waffen ist deaktiviert!",
+
+  "noopgap.disabled": "§cDas Essen von OP-Gaps ist deaktiviert!",
+
+  "nototem.disabled": "§cTotems sind deaktiviert, du stirbst trotzdem!",
+
+  "punch.disabled": "§cDie Verzauberung Punch ist auf Bögen deaktiviert.",
+
+  "villager.trade.disabled": "§cTrading mit Villagern ist derzeit nicht erlaubt."
 }

@@ -21,10 +21,7 @@ public class PunchEnchantBlocker implements Listener {
 
     @EventHandler
     public void onEnchantItem(EnchantItemEvent event) {
-        plugin.getLogger().info("[DEBUG] EnchantItemEvent triggered");
-
         boolean allowPunch = plugin.getConfig().getBoolean("allow-punch", false);
-        plugin.getLogger().info("[DEBUG] allow-punch setting: " + allowPunch);
         if (allowPunch) return;
 
         ItemStack item = event.getItem();
@@ -32,10 +29,9 @@ public class PunchEnchantBlocker implements Listener {
         if (!item.getType().toString().contains("BOW")) return;
 
         if (event.getEnchantsToAdd().containsKey(Enchantment.PUNCH)) {
-            plugin.getLogger().info("[DEBUG] Punch enchantment found. Blocking it.");
             event.getEnchantsToAdd().remove(Enchantment.PUNCH);
             if (event.getEnchanter() != null) {
-                event.getEnchanter().sendMessage("§cDie Verzauberung Punch ist auf Bögen deaktiviert.");
+                event.getEnchanter().sendMessage(plugin.getLanguage().getMessage("punch.disabled"));
             }
         }
     }
@@ -53,7 +49,6 @@ public class PunchEnchantBlocker implements Listener {
         if (!first.getType().toString().contains("BOW")) return;
 
         if (second.containsEnchantment(Enchantment.PUNCH)) {
-            plugin.getLogger().info("[DEBUG] Punch in Anvil detected. Blocking result.");
             event.setResult(null);
         }
     }
@@ -71,10 +66,9 @@ public class PunchEnchantBlocker implements Listener {
         if (!result.getType().toString().contains("BOW")) return;
 
         if (result.containsEnchantment(Enchantment.PUNCH)) {
-            plugin.getLogger().info("[DEBUG] Punch-Enchantment im Anvil-Ergebnis gefunden. Klick blockiert.");
             event.setCancelled(true);
             if (event.getWhoClicked() instanceof Player player) {
-                plugin.sendMessage(player,"§cPunch ist auf Bögen deaktiviert.");
+                plugin.sendMessage(player, plugin.getLanguage().getMessage("punch.disabled"));
             }
         }
     }

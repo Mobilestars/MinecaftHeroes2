@@ -22,7 +22,10 @@ public class EnderPearlListener implements Listener {
 
         if (!manager.canUseEnderPearl(player)) {
             event.setCancelled(true);
-            plugin.sendMessage(player, + manager.getMaxPearls() + " Enderperlen verwenden!");
+            String msg = plugin.getLanguage()
+                    .getMessage("enderpearl.limit")
+                    .replace("%max%", String.valueOf(manager.getMaxPearls()));
+            plugin.sendMessage(player, msg);
         } else {
             manager.recordEnderPearlUse(player);
         }

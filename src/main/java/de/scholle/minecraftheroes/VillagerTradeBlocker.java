@@ -18,14 +18,12 @@ public class VillagerTradeBlocker implements Listener {
 
     @EventHandler
     public void onPlayerInteractWithVillager(PlayerInteractEntityEvent event) {
-        if (!(event.getRightClicked() instanceof Villager)) {
-            return;
-        }
+        if (!(event.getRightClicked() instanceof Villager)) return;
 
         if (!villagerTradingEnabled) {
             event.setCancelled(true);
             Player player = event.getPlayer();
-            plugin.sendMessage(player, "§cTrading mit Villagern ist derzeit nicht erlaubt.");
+            plugin.sendMessage(player, plugin.getLanguage().getMessage("villager.trade.disabled"));
         }
     }
 }

@@ -39,10 +39,11 @@ public class CombatDisplayManager {
 
                     if (combatManager.isInCombat(uuid)) {
                         int secondsLeft = combatManager.getCombatTimeLeft(uuid);
-                        TextComponent combatTimeText = Component.text()
-                                .append(Component.text("Combat: ").color(NamedTextColor.RED))
-                                .append(Component.text(secondsLeft + "s").color(NamedTextColor.GOLD))
-                                .build();
+                        String combatText = plugin.getLanguage().getMessage("combat.actionbar")
+                                .replace("%seconds%", String.valueOf(secondsLeft));
+
+                        TextComponent combatTimeText = Component.text(combatText, NamedTextColor.RED);
+
                         player.sendActionBar(combatTimeText);
                     } else {
                         int lives = plugin.getLives(uuid);

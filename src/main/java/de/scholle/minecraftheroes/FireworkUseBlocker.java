@@ -18,13 +18,13 @@ public class FireworkUseBlocker implements Listener {
     @EventHandler
     public void onPlayerUseFirework(PlayerInteractEvent event) {
         if (!plugin.isFireworkPlacementAllowed()) {
-            // Nur rechte Maustaste Aktionen prüfen
             Action action = event.getAction();
             if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
                 ItemStack item = event.getItem();
                 if (item != null && item.getType() == Material.FIREWORK_ROCKET) {
                     event.setCancelled(true);
-                    plugin.sendMessage(event.getPlayer(), "§cDas Zünden von Raketen ist deaktiviert.");
+                    String msg = plugin.getLanguage().getMessage("firework.use.disabled");
+                    plugin.sendMessage(event.getPlayer(), msg);
                 }
             }
         }

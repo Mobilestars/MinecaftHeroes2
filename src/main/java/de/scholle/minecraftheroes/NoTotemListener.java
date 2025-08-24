@@ -6,8 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 
 public class NoTotemListener implements Listener {
 
@@ -25,16 +24,16 @@ public class NoTotemListener implements Listener {
         if (player.getHealth() - event.getFinalDamage() <= 0) {
             if (player.getInventory().getItemInOffHand().getType() == Material.TOTEM_OF_UNDYING) {
                 player.getInventory().setItemInOffHand(null);
-                plugin.sendMessage(player, "§cTotems sind deaktiviert, du stirbst trotzdem!");
+                plugin.sendMessage(player, plugin.getLanguage().getMessage("nototem.disabled"));
             } else if (player.getInventory().getItemInMainHand().getType() == Material.TOTEM_OF_UNDYING) {
                 player.getInventory().setItemInMainHand(null);
-                plugin.sendMessage(player, "§cTotems sind deaktiviert, du stirbst trotzdem!");
+                plugin.sendMessage(player, plugin.getLanguage().getMessage("nototem.disabled"));
             }
         }
     }
 
     @EventHandler
-    public void onPickup(org.bukkit.event.entity.EntityPickupItemEvent event) {
+    public void onPickup(EntityPickupItemEvent event) {
         if (!plugin.isNoTotems()) return;
         if (!(event.getEntity() instanceof Player)) return;
 

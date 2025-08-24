@@ -1,6 +1,5 @@
 package de.scholle.minecraftheroes;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -41,11 +40,9 @@ public class NoNetheriteListener implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         if (!plugin.isNoNetherite()) return;
-        if (!(event.getWhoClicked() instanceof Player)) return;
+        if (!(event.getWhoClicked() instanceof Player player)) return;
 
-        Player player = (Player) event.getWhoClicked();
         int rawSlot = event.getRawSlot();
-
         if (rawSlot >= 5 && rawSlot <= 8) {
             ItemStack currentItem = event.getCurrentItem();
             ItemStack cursorItem = event.getCursor();
@@ -53,7 +50,7 @@ public class NoNetheriteListener implements Listener {
             if ((cursorItem != null && isNetheriteArmor(cursorItem.getType())) ||
                     (currentItem != null && isNetheriteArmor(currentItem.getType()))) {
                 event.setCancelled(true);
-                plugin.sendMessage(player, ChatColor.RED + "Netherite-Rüstung darf hier nicht abgelegt werden!");
+                plugin.sendMessage(player, plugin.getLanguage().getMessage("nonetherite.armor.place"));
             }
         }
     }
@@ -67,7 +64,7 @@ public class NoNetheriteListener implements Listener {
 
         if (item != null && isNetheriteArmor(item.getType()) && event.getHand() == EquipmentSlot.HAND) {
             event.setCancelled(true);
-            plugin.sendMessage(player, ChatColor.RED + "Das Anlegen von Netherite-Rüstung ist deaktiviert!");
+            plugin.sendMessage(player, plugin.getLanguage().getMessage("nonetherite.armor.equip"));
         }
     }
 
@@ -80,21 +77,20 @@ public class NoNetheriteListener implements Listener {
 
         if (item != null && isNetheriteMaterial(item.getType())) {
             event.setCancelled(true);
-            plugin.sendMessage(player, ChatColor.RED + "Das Benutzen von Netherite-Werkzeugen ist deaktiviert!");
+            plugin.sendMessage(player, plugin.getLanguage().getMessage("nonetherite.tool.use"));
         }
     }
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (!plugin.isNoNetherite()) return;
-        if (!(event.getDamager() instanceof Player)) return;
+        if (!(event.getDamager() instanceof Player player)) return;
 
-        Player player = (Player) event.getDamager();
         ItemStack item = player.getInventory().getItemInMainHand();
 
         if (item != null && isNetheriteMaterial(item.getType())) {
             event.setCancelled(true);
-            plugin.sendMessage(player, ChatColor.RED + "Das Benutzen von Netherite-Waffen ist deaktiviert!");
+            plugin.sendMessage(player, plugin.getLanguage().getMessage("nonetherite.weapon.use"));
         }
     }
 
@@ -103,11 +99,11 @@ public class NoNetheriteListener implements Listener {
         if (!plugin.isNoNetherite()) return;
 
         Entity target = event.getTargetEntity();
-        if (target instanceof Player) {
+        if (target instanceof Player player) {
             ItemStack armor = event.getItem();
             if (armor != null && isNetheriteArmor(armor.getType())) {
                 event.setCancelled(true);
-                plugin.sendMessage((Player) target, ChatColor.RED + "Dispenser können keine Netherite-Rüstung anlegen!");
+                plugin.sendMessage(player, plugin.getLanguage().getMessage("nonetherite.armor.dispenser"));
             }
         }
     }

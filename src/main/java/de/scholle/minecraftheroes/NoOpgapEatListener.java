@@ -1,11 +1,11 @@
 package de.scholle.minecraftheroes;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.entity.Player;
 
 public class NoOpgapEatListener implements Listener {
 
@@ -25,7 +25,8 @@ public class NoOpgapEatListener implements Listener {
         if (item != null && item.getType() == Material.ENCHANTED_GOLDEN_APPLE) {
             event.setCancelled(true);
             Player player = event.getPlayer();
-            plugin.sendMessage(player, "§cDas Essen von OP-Gaps ist deaktiviert!");
+            String msg = plugin.getLanguage().getMessage("noopgap.disabled");
+            plugin.sendMessage(player, msg);
         }
     }
 }
