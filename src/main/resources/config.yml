@@ -20,3 +20,5 @@ player-death-action: "timeout" # "spec", "ban", "timeout"
 death-timeout-seconds: 120     # nur relevant bei timeout
 discord-link: "https://discord.gg/deinserver"
 texturepack-link: "https://example.com/texturepack.zip"
+max-cobwebs-per-combat: 64
+max-enderpearls-per-combat: 32

@@ -32,13 +32,15 @@ public class CombatManager implements Listener {
         this.combatDurationMs = seconds * 1000L;
     }
 
-    // Spieler kommt in den Kampfmodus
     private void enterCombat(Player a, Player b) {
         long now = System.currentTimeMillis();
         combatTimestamps.put(a.getUniqueId(), now);
         combatTimestamps.put(b.getUniqueId(), now);
         lastCombatOpponent.put(a.getUniqueId(), b.getUniqueId());
         lastCombatOpponent.put(b.getUniqueId(), a.getUniqueId());
+
+        plugin.getCobwebManager().resetCobwebs(a.getUniqueId());
+        plugin.getCobwebManager().resetCobwebs(b.getUniqueId());
     }
 
     @EventHandler

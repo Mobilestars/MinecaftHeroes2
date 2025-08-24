@@ -19,6 +19,8 @@ public class CombatPlugin extends JavaPlugin {
     public static CombatPlugin plugin;
 
     private CombatManager combatManager;
+    private CobwebManager cobwebManager;
+    private EnderPearlManager enderPearlManager;
     private CombatDisplayManager displayManager;
     private LivesStorage livesStorage;
     private DuelCommand duelCommand;
@@ -55,12 +57,14 @@ public class CombatPlugin extends JavaPlugin {
         this.lives.putAll(livesStorage.loadLives());
 
         this.combatManager = new CombatManager(this);
+        this.cobwebManager = new CobwebManager(this);
+        this.enderPearlManager = new EnderPearlManager(this);
         this.displayManager = new CombatDisplayManager(this, this.combatManager);
 
-        // DuelCommand registrieren
         this.duelCommand = new DuelCommand(this, this.combatManager);
 
         Bukkit.getPluginManager().registerEvents(this.combatManager, this);
+        Bukkit.getPluginManager().registerEvents(new CobwebListener(this), this); // CobwebListener
         Bukkit.getPluginManager().registerEvents(new FireworkCrossbowBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new PunchEnchantBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new VillagerTradeBlocker(this, villagerTradingEnabled), this);
@@ -72,18 +76,16 @@ public class CombatPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new FireworkUseBlocker(this), this);
         Bukkit.getPluginManager().registerEvents(new NoTotemListener(this), this);
         Bukkit.getPluginManager().registerEvents(new NoNetheriteListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new EnderPearlListener(this), this);
 
         getCommand("lives").setExecutor(new LivesCommand(this));
         getCommand("lives").setTabCompleter(new CombatTabCompleter());
         getCommand("heart").setTabCompleter(new CombatTabCompleter());
         getCommand("listdummys").setExecutor(new ListDummysCommand());
-
         getCommand("discord").setExecutor(new DiscordCommand(this));
         getCommand("dc").setExecutor(new DiscordCommand(this));
         getCommand("texturepack").setExecutor(new TexturepackCommand(this));
         getCommand("resourcepack").setExecutor(new TexturepackCommand(this));
-
-        // Duel commands registrieren
         getCommand("duel").setExecutor(this.duelCommand);
 
         getLogger().info("CombatPlugin enabled.");
@@ -101,6 +103,14 @@ public class CombatPlugin extends JavaPlugin {
 
     public CombatManager getCombatManager() {
         return this.combatManager;
+    }
+
+    public CobwebManager getCobwebManager() {
+        return this.cobwebManager;
+    }
+
+    public EnderPearlManager getEnderPearlManager() {
+        return this.enderPearlManager;
     }
 
     public int getLives(UUID uuid) {
@@ -171,7 +181,6 @@ public class CombatPlugin extends JavaPlugin {
         return noNetherite;
     }
 
-    // Zugriff auf DuelCommand, falls du von außen prüfen willst
     public DuelCommand getDuelCommand() {
         return duelCommand;
     }
