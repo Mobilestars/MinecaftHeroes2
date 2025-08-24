@@ -1,0 +1,28 @@
+{
+  "combat.death.broadcast": "{victim} ist im Kampf gegen {killer} gestorben und hat ein Herz verloren!",
+  "combat.death.livesleft": "§cDu hast ein Leben im Kampf verloren. Verbleibende Leben: {lives}",
+  "combat.death.none": "§4Du hast alle deine Leben verloren und bist jetzt raus.",
+  "combat.death.kick": "§cDu hast alle deine Leben verloren!",
+  "combat.death.timeout.start": "§cDu bist für {time} Sekunden gesperrt.",
+  "combat.death.timeout.end": "§aDeine Sperre ist vorbei, du bist wieder im Spiel!",
+
+  "combat.attacked": "§cDu wurdest von %attacker% angegriffen!",
+  "combat.attacker": "§aDu hast %victim% angegriffen!",
+
+  "combat.actionbar.time": "§cCombat: §6{time}s",
+  "combat.actionbar.heart": "{heart}",
+
+  "duel.started.self": "§aDuell gestartet mit {opponent}!",
+  "duel.started.opponent": "§c{player} hat ein Duell mit dir gestartet!",
+  "duel.ended": "§eDas Duell wurde beendet!",
+  "duel.won": "§aDu hast das Duell gewonnen, da dein Gegner gestorben ist!",
+  "duel.lost": "§eDu bist im Duell gestorben, daher verlierst du kein Leben.",
+
+  "death.lives.lost": "§cDu hast ein Leben im Kampf verloren. Verbleibende Leben: {lives}",
+  "death.lives.none": "§4Du hast alle deine Leben verloren und bist jetzt raus.",
+  "death.kick": "§cDu hast alle deine Leben verloren!",
+  "death.timeout.start": "§cDu bist für {time} Sekunden gesperrt.",
+  "death.timeout.end": "§aDeine Sperre ist vorbei, du bist wieder im Spiel!",
+
+  "inventory.keep": "§6Ein Teil deines Inventars wurde behalten."
+}

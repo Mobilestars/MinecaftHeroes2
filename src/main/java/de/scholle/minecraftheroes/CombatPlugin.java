@@ -24,6 +24,7 @@ public class CombatPlugin extends JavaPlugin {
     private CombatDisplayManager displayManager;
     private LivesStorage livesStorage;
     private DuelCommand duelCommand;
+    private LanguageManager languageManager;
 
     private final HashMap<UUID, Integer> lives = new HashMap<>();
     private final HashSet<UUID> awaitingRevive = new HashSet<>();
@@ -62,6 +63,8 @@ public class CombatPlugin extends JavaPlugin {
         this.displayManager = new CombatDisplayManager(this, this.combatManager);
 
         this.duelCommand = new DuelCommand(this, this.combatManager);
+
+        this.languageManager = new LanguageManager(this);
 
         Bukkit.getPluginManager().registerEvents(this.combatManager, this);
         Bukkit.getPluginManager().registerEvents(new CobwebListener(this), this); // CobwebListener
@@ -111,6 +114,10 @@ public class CombatPlugin extends JavaPlugin {
 
     public EnderPearlManager getEnderPearlManager() {
         return this.enderPearlManager;
+    }
+
+    public LanguageManager getLanguage() {
+        return languageManager;
     }
 
     public int getLives(UUID uuid) {

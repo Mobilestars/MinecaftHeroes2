@@ -22,7 +22,7 @@ public class EnderPearlListener implements Listener {
 
         if (!manager.canUseEnderPearl(player)) {
             event.setCancelled(true);
-            player.sendMessage("§cDu darfst während des Kampfes nur " + manager.getMaxPearls() + " Enderperlen verwenden!");
+            plugin.sendMessage(player, + manager.getMaxPearls() + " Enderperlen verwenden!");
         } else {
             manager.recordEnderPearlUse(player);
         }

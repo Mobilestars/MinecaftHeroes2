@@ -34,10 +34,23 @@ public class CombatManager implements Listener {
 
     private void enterCombat(Player a, Player b) {
         long now = System.currentTimeMillis();
+        boolean aInCombat = isInCombat(a.getUniqueId());
+        boolean bInCombat = isInCombat(b.getUniqueId());
+
         combatTimestamps.put(a.getUniqueId(), now);
         combatTimestamps.put(b.getUniqueId(), now);
         lastCombatOpponent.put(a.getUniqueId(), b.getUniqueId());
         lastCombatOpponent.put(b.getUniqueId(), a.getUniqueId());
+
+        if (!aInCombat) {
+            String attackedMsg = plugin.getLanguage().get("combat.attacked", Map.of("attacker", b.getName()));
+            plugin.sendMessage(a, attackedMsg);
+        }
+
+        if (!bInCombat) {
+            String attackerMsg = plugin.getLanguage().get("combat.attacker", Map.of("victim", a.getName()));
+            plugin.sendMessage(b, attackerMsg);
+        }
 
         plugin.getCobwebManager().resetCobwebs(a.getUniqueId());
         plugin.getCobwebManager().resetCobwebs(b.getUniqueId());
@@ -71,7 +84,6 @@ public class CombatManager implements Listener {
         tnt.setMetadata("manual", new FixedMetadataValue(plugin, shooter.getUniqueId().toString()));
     }
 
-    // ---------------- Duel Methoden ----------------
     public boolean isInDuel(UUID uuid) {
         return activeDuels.containsKey(uuid);
     }
@@ -106,7 +118,6 @@ public class CombatManager implements Listener {
         plugin.sendMessage(player, message);
     }
 
-    // ---------------- Death Handling ----------------
     @EventHandler(priority = EventPriority.LOWEST)
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
@@ -118,59 +129,67 @@ public class CombatManager implements Listener {
 
         double keepPct = inCombat ? plugin.getKeepInventoryPercentageCombat() : plugin.getKeepInventoryPercentageNatural();
 
-        // Leben nur verlieren, wenn NICHT im Duell
         if (!inDuel) {
             if (inCombat) {
                 int lives = plugin.getLives(uuid) - 1;
+                UUID oppId = getOpponent(uuid);
+                Player opponent = oppId != null ? Bukkit.getPlayer(oppId) : null;
+
                 if (lives <= 0) {
                     plugin.removePlayer(uuid);
                     String action = plugin.getConfig().getString("player-death-action", "spec").toLowerCase();
                     switch (action) {
                         case "ban" -> {
-                            player.kick(Component.text("§cDu hast alle deine Leben verloren!"));
+                            player.kick(Component.text(plugin.getLanguage().get("combat.death.kick")));
                             Bukkit.getBanList(org.bukkit.BanList.Type.NAME)
                                     .addBan(player.getName(), "Alle Leben verloren", null, null);
                         }
                         case "timeout" -> {
                             long timeoutSeconds = plugin.getConfig().getLong("death-timeout-seconds", 60);
                             player.setGameMode(GameMode.SPECTATOR);
-                            plugin.sendMessage(player, "§cDu bist für " + timeoutSeconds + " Sekunden gesperrt.");
+                            Map<String, String> ph = Map.of("time", String.valueOf(timeoutSeconds));
+                            plugin.sendMessage(player, plugin.getLanguage().get("combat.death.timeout.start", ph));
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
                                     if (player.isOnline()) {
                                         player.setGameMode(GameMode.SURVIVAL);
-                                        plugin.sendMessage(player, "§aDeine Sperre ist vorbei, du bist wieder im Spiel!");
+                                        plugin.sendMessage(player, plugin.getLanguage().get("combat.death.timeout.end"));
                                     }
                                 }
                             }.runTaskLater(plugin, timeoutSeconds * 20L);
                         }
                         default -> {
                             Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                                player.sendMessage("§4Du hast alle deine Leben verloren und bist jetzt raus.");
+                                plugin.sendMessage(player, plugin.getLanguage().get("combat.death.none"));
                                 player.setGameMode(GameMode.SPECTATOR);
                             }, 2L);
                         }
                     }
                 } else {
                     plugin.setLives(uuid, lives);
-                    plugin.sendMessage(player,"§cDu hast ein Leben im Kampf verloren. Verbleibende Leben: " + lives);
+                    Map<String, String> ph = new HashMap<>();
+                    ph.put("victim", player.getName());
+                    ph.put("killer", opponent != null ? opponent.getName() : "Unbekannt");
+                    String msg = plugin.getLanguage().get("combat.death.broadcast", ph);
+                    for (Player online : Bukkit.getOnlinePlayers()) {
+                        plugin.sendMessage(online, msg);
+                    }
+                    plugin.sendMessage(player, plugin.getLanguage().get("combat.death.livesleft", Map.of("lives", String.valueOf(lives))));
                 }
             }
         } else {
-            // Duell beendet automatisch
             UUID opponentUuid = getDuelOpponent(uuid);
             endDuel(uuid);
             if (opponentUuid != null) {
                 Player opponent = Bukkit.getPlayer(opponentUuid);
                 if (opponent != null && opponent.isOnline()) {
-                    sendMessage(opponent,"§aDu hast das Duell gewonnen, da dein Gegner gestorben ist!");
+                    sendMessage(opponent, "§aDu hast das Duell gewonnen, da dein Gegner gestorben ist!");
                 }
             }
-            sendMessage(player,"§eDu bist im Duell gestorben, daher verlierst du kein Leben.");
+            sendMessage(player, "§eDu bist im Duell gestorben, daher verlierst du kein Leben.");
         }
 
-        // Inventar behalten / Verlust berechnen
         ItemStack[] inventory = player.getInventory().getContents();
         List<Integer> occupied = new ArrayList<>();
         for (int i = 0; i < inventory.length; i++) {
@@ -186,7 +205,7 @@ public class CombatManager implements Listener {
         for (Integer slot : keepSlots) player.getInventory().setItem(slot, null);
         Bukkit.getScheduler().runTask(plugin, () -> {
             player.getInventory().setContents(kept);
-            plugin.sendMessage(player,"§6Ein Teil deines Inventars wurde behalten.");
+            plugin.sendMessage(player, plugin.getLanguage().get("inventory.keep"));
         });
 
         if (inCombat) {
@@ -194,7 +213,6 @@ public class CombatManager implements Listener {
             lastCombatOpponent.remove(uuid);
         }
 
-        // Death Animation
         int frames = plugin.getConfig().getInt("death-animation-frames", 10);
         new BukkitRunnable() {
             int currentFrame = 1;
@@ -207,7 +225,6 @@ public class CombatManager implements Listener {
         }.runTaskTimer(plugin, 0L, 1L);
     }
 
-    // ---------------- Combat Utilities ----------------
     public boolean isInCombat(UUID uuid) {
         return (System.currentTimeMillis() - combatTimestamps.getOrDefault(uuid, 0L)) <= combatDurationMs;
     }

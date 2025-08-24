@@ -21,7 +21,7 @@ public class CobwebListener implements Listener {
             CobwebManager cobwebManager = plugin.getCobwebManager();
             if (!cobwebManager.canPlaceCobweb(player)) {
                 event.setCancelled(true);
-                player.sendMessage("§cDu darfst während des Kampfes nur " + cobwebManager.getMaxCobwebs() + " Cobwebs platzieren!");
+                plugin.sendMessage(player, + cobwebManager.getMaxCobwebs() + " Cobwebs platzieren!");
             } else {
                 cobwebManager.recordCobwebPlacement(player);
             }
